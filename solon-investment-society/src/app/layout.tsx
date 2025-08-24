@@ -1,0 +1,67 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Solon Investment Society",
+  description: "Solon High School's investment and finance club.",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
+        <div className="min-h-screen flex flex-col">
+          <header className="sticky top-0 z-50 border-b border-border/60 bg-white/70 dark:bg-background/60 backdrop-blur">
+            <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+              <Link href="/" className="font-semibold text-lg sm:text-xl tracking-tight">
+                <span className="inline-flex items-center gap-2">
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded bg-accent text-accent-foreground font-bold">S</span>
+                  <span>Solon Investment Society</span>
+                </span>
+              </Link>
+              <nav className="hidden md:flex items-center gap-8 text-sm">
+                <Link href="/about" className="hover:text-accent transition-colors">About</Link>
+                <Link href="/schedule" className="hover:text-accent transition-colors">Schedule</Link>
+                <Link href="/officers" className="hover:text-accent transition-colors">Officers</Link>
+              </nav>
+              <nav className="md:hidden">
+                <Link href="/schedule" className="inline-flex items-center rounded-md bg-accent px-3 py-2 text-xs font-medium text-accent-foreground shadow-sm hover:opacity-90">
+                  Schedule
+                </Link>
+              </nav>
+            </div>
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="border-t border-border/60">
+            <div className="max-w-7xl mx-auto px-6 py-8 text-sm text-muted-foreground">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>© {new Date().getFullYear()} Solon Investment Society</p>
+                <div className="flex gap-6">
+                  <Link href="/about" className="hover:text-accent transition-colors">About</Link>
+                  <Link href="/schedule" className="hover:text-accent transition-colors">Schedule</Link>
+                  <Link href="/officers" className="hover:text-accent transition-colors">Officers</Link>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </body>
+    </html>
+  );
+}
