@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}>
         <div className="min-h-screen flex flex-col">
           <header className="sticky top-0 z-50 border-b border-border/60 bg-white/70 dark:bg-background/60 backdrop-blur">
