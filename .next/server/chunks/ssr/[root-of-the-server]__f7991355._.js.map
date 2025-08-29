@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 3, "column": 0}, "map": {"version":3,"sources":[],"names":[],"mappings":"","debugId":null}},
+    {"offset": {"line": 11, "column": 0}, "map": {"version":3,"sources":["file:///Users/denizbuldum/Downloads/inv/app/about/page.tsx"],"sourcesContent":["export const metadata = { title: \"About - Solon Investment Society\" };\n\nexport default function About() {\n  return (\n    <section className=\"space-y-4\">\n      <h1 className=\"text-3xl font-bold text-blue-700\">About Us</h1>\n      <p>\n        Solon Investment Society is a high school club focused on building knowledge of the stock market,\n        personal finance, and long-term investing strategies. We meet weekly to discuss current events,\n        practice portfolio management, and host guest speakers from the finance industry.\n      </p>\n    </section>\n  );\n}\n"],"names":[],"mappings":";;;;;;;;AAAO,MAAM,WAAW;IAAE,OAAO;AAAmC;AAErD,SAAS;IACtB,qBACE,8OAAC;QAAQ,WAAU;;0BACjB,8OAAC;gBAAG,WAAU;0BAAmC;;;;;;0BACjD,8OAAC;0BAAE;;;;;;;;;;;;AAOT","debugId":null}}]
+}

@@ -1,0 +1,14 @@
+[build]
+  command = "npm --prefix solon-investment-society run build"
+  publish = "solon-investment-society/.next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[functions]
+  directory = "netlify/functions"
+
+

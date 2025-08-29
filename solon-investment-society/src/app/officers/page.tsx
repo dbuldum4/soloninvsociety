@@ -6,10 +6,11 @@ type Officer = {
 };
 
 const officers: Officer[] = [
-  { name: "Alex Kim", role: "President", initials: "AK", bio: "Leads weekly meetings and organizes stock pitch events." },
-  { name: "Maya Patel", role: "Vice President", initials: "MP", bio: "Coordinates guest speakers and outreach." },
-  { name: "Jordan Li", role: "Treasurer", initials: "JL", bio: "Manages budgets and competition fees." },
-  { name: "Sam Rivera", role: "Secretary", initials: "SR", bio: "Keeps notes and maintains resources." },
+  { name: "Avery Mark Andrews", role: "Club President", initials: "AA", bio: "Chairs meetings, sets club direction, and keeps things moving." },
+  { name: "Sanat Mudundi", role: "Club Vice President", initials: "SM", bio: "Coordinates initiatives, supports projects, and steps in wherever needed." },
+  { name: "Deniz Buldum", role: "Technical Director, PR", initials: "DB", bio: "Oversees the website, runs challenges, and keeps our socials current." },
+  { name: "Akshat Sawner", role: "Secretary", initials: "AS", bio: "Tracks minutes, shares updates, and keeps everyone on the same page." },
+  { name: "Jonathan Parran", role: "Head Consultant", initials: "JP", bio: "Your go-to for practical stock questions and personalized investing guidance." },
 ];
 
 export default function OfficersPage() {

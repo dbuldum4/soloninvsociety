@@ -7,22 +7,10 @@ type Event = {
 
 const events: Event[] = [
   {
-    date: "Sep 10",
-    title: "Kickoff + Intro to Markets",
-    description: "Overview of the club, goals, and basics of how markets work.",
-    location: "Room 210",
-  },
-  {
-    date: "Sep 17",
-    title: "Building an Investment Thesis",
-    description: "How to research companies and structure a stock pitch.",
-    location: "Room 210",
-  },
-  {
-    date: "Sep 24",
-    title: "Portfolio Simulation Setup",
-    description: "Create teams and launch the portfolio challenge.",
-    location: "Room 210",
+    date: "TBD",
+    title: "Introductory Meeting",
+    description: "First meet-up and overview of what's ahead. Date coming soon.",
+    location: "TBD",
   },
 ];
 
@@ -31,7 +19,7 @@ export default function SchedulePage() {
     <div className="max-w-5xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold tracking-tight">Schedule</h1>
       <p className="mt-4 text-muted-foreground">
-        We meet weekly after school on Tuesdays from 3:10–4:00 PM unless otherwise noted. Location: Room 210.
+        Schedule is TBD. We’ll share dates and details soon.
       </p>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
