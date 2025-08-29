@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
+import Image from "next/image";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Solon Investment Society",
   description: "Solon High School's investment and finance club.",
+  icons: {
+    icon: "/icon.jpg",
+  },
 };
 
 export default function RootLayout({
@@ -31,7 +35,7 @@ export default function RootLayout({
             <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
               <Link href="/" className="font-semibold text-lg sm:text-xl tracking-tight">
                 <span className="inline-flex items-center gap-2">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded bg-accent text-accent-foreground font-bold">S</span>
+                  <Image src="/logo.jpg" alt="Solon Investment Society" width={28} height={28} className="h-7 w-7 rounded object-cover" />
                   <span>Solon Investment Society</span>
                 </span>
               </Link>
