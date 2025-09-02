@@ -39,14 +39,13 @@ const officers: Officer[] = [
     role: "Head Consultant / Treasurer",
     initials: "JP",
     bio:
-      "4 years investing experience, $60k crypto portfolio through investing in bitcoin in 2018, managed an investing community with 2000 people.",
+      "4 years investing experience, 2,400% returns on crypto (bitcoin investor in 2018), managed an investing community with 2000 people.",
   },
 ];
 
 export default function OfficersPage() {
   return (
     <section className="relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-[450px] bg-gradient-to-b from-accent/15 to-transparent"></div>
       <div className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-3xl font-bold tracking-tight">Officers</h1>
         <p className="mt-3 text-sm text-muted-foreground">

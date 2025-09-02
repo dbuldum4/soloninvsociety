@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
 import "./globals.css";
-import PageTransition from "./components/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,8 +51,9 @@ export default function RootLayout({
               </nav>
             </div>
           </header>
-          <main className="flex-1">
-            <PageTransition>{children}</PageTransition>
+          <main className="relative flex-1">
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-[450px] bg-gradient-to-b from-accent/15 to-transparent"></div>
+            {children}
           </main>
           <footer className="border-t border-border/60">
             <div className="max-w-7xl mx-auto px-6 py-8 text-sm text-muted-foreground">

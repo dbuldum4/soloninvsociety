@@ -1,7 +1,6 @@
 export default function SchedulePage() {
   return (
     <section className="relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-[450px] bg-gradient-to-b from-accent/15 to-transparent"></div>
       <div className="max-w-4xl mx-auto px-6 py-12">
       <h1 className="text-3xl font-bold tracking-tight">Schedule</h1>
       <p className="mt-4 text-muted-foreground">

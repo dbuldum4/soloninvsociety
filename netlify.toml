@@ -1,5 +1,6 @@
 [build]
-  command = "npm --prefix solon-investment-society run build"
+  base = "solon-investment-society"
+  command = "npm ci && npm run build"
   publish = "solon-investment-society/.next"
 
 [build.environment]

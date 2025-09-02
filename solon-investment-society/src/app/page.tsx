@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <section className="relative overflow-hidden">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-32 -z-10 h-[450px] bg-gradient-to-b from-accent/15 to-transparent"></div>
       <div className="max-w-7xl mx-auto px-6 py-16 sm:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
