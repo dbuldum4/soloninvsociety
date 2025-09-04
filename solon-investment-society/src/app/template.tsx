@@ -10,10 +10,10 @@ function MotionWrapper({ children }: PropsWithChildren) {
   const isPresent = useIsPresent();
   return (
     <motion.div
-      initial={{ opacity: 0, x: -8 }}
-      animate={{ opacity: 1, x: 0, transition: { duration: 0.36, ease: [0.22, 1, 0.36, 1] } }}
-      exit={{ opacity: 0, y: 8, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } }}
-      style={{ position: isPresent ? "relative" : "absolute", inset: 0 }}
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0, transition: { duration: 0.32, ease: [0.22, 1, 0.36, 1] } }}
+      exit={{ opacity: 0, y: -8, transition: { duration: 0.26, ease: [0.22, 1, 0.36, 1] } }}
+      style={{ position: isPresent ? "relative" : "absolute", inset: 0, width: "100%" }}
     >
       {children}
     </motion.div>
