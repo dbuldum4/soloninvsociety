@@ -39,7 +39,7 @@ const officers: Officer[] = [
     role: "Head Consultant / Treasurer",
     initials: "JP",
     bio:
-      "4 years investing experience, 2,400% returns on crypto (bitcoin investor in 2018), managed an investing community with 2000 people.",
+      "4 years investing experience, 2,400% returns on crypto (bitcoin investor), managed an investing community with 2000 people.",
   },
 ];
 
