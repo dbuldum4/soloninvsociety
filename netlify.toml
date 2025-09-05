@@ -1,7 +1,7 @@
 [build]
   base = "solon-investment-society"
   command = "npm ci && npm run build"
-  publish = "solon-investment-society/.next"
+  publish = ".next"
 
 [build.environment]
   NODE_VERSION = "18"
