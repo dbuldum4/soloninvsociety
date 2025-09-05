@@ -9,16 +9,16 @@ export default function SchedulePage() {
 
       <div className="mt-8 space-y-6">
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 1 — Financial Literacy &amp; Intro to the Market</h2>
+          <h2 className="text-xl font-semibold">Week 1 — Financial Literacy &amp; Intro to the market</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
-            <li><span className="font-medium">Warm-up:</span> Kahoot on personal finance</li>
+            <li><span className="font-medium">Warm-up:</span> Kahoot on personal finance <span className="text-muted-foreground">(candy prize)</span></li>
             <li><span className="font-medium">Lecture:</span> Investing basics (what are stocks/index funds/mutual funds/hedge funds/ETFs)</li>
             <li><span className="font-medium">Simulation:</span> Create a virtual portfolio on Investopedia simulator</li>
           </ul>
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 2 — How to effectively research stocks</h2>
+          <h2 className="text-xl font-semibold">Week 2–3 — How to effectively research stocks</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
             <li><span className="font-medium">Lecture:</span> Growth vs Value, Diversification, Stocks vs. ETFs, basic company valuations
               <ul className="mt-2 list-disc pl-6 space-y-1">
@@ -31,47 +31,59 @@ export default function SchedulePage() {
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 3 — Case Studies &amp; Real-World Events</h2>
+          <h2 className="text-xl font-semibold">Week 4 — Company Valuation part 2</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
-            <li><span className="font-medium">Workshop:</span> Company Valuation part 2 / Introduction to financial statements (how to read basic Income Statements + Balance Sheets)
+            <li>Introduction to financial statements (how to read basic Income Statements + Balance Sheets)
               <ul className="mt-2 list-disc pl-6 space-y-1">
                 <li>P/E, debt/equity, profit margins, EPS, liquidity</li>
               </ul>
             </li>
-            <li>Begin stock debates (e.g., AMD vs Intel)</li>
+          </ul>
+        </article>
+
+        <article className="rounded-lg border border-border bg-card p-6">
+          <h2 className="text-xl font-semibold">Week 5 — Case Studies &amp; Real-World Events</h2>
+          <ul className="mt-3 list-disc pl-6 space-y-2">
+            <li>Begin stock debates (eg. AMD vs Intel)</li>
             <li>Begin stock pitches (members come in and propose stocks with potential growth — promotes value investing)
               <ul className="mt-2 list-disc pl-6 space-y-1">
-                <li>Use CWRU Weatherhead fund template</li>
+                <li>Use CWRU weatherhead fund template</li>
               </ul>
             </li>
           </ul>
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 4/5 — Guest Speaker / Project Lab</h2>
+          <h2 className="text-xl font-semibold">Week 6 — Guest Speaker / Project Lab</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
             <li>Host a CWRU Journal of Economics member to speak on investing and stock picking OR</li>
-            <li>Host a local CFA or financial advisor to speak on career paths</li>
-            <li><span className="font-medium">Assignments:</span> Prep for <span className="font-semibold">Young Investors Society</span> stock pitch or similar event</li>
+            <li>Host a local CFA or financial advisor to speak on career paths
+              <ul className="mt-2 list-disc pl-6 space-y-1">
+                <li>Tyler Dalton — senior associate at Kaulig Capital</li>
+              </ul>
+            </li>
           </ul>
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 4/5 — Real world applications</h2>
+          <h2 className="text-xl font-semibold">Week 7/8 — Real world applications</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
             <li>What can make stocks fluctuate?
               <ul className="mt-2 list-disc pl-6 space-y-1">
                 <li>Earnings reports, news</li>
                 <li>Look into Trump’s impacts on the market</li>
+                <li>Look at how famous investors like Buffet, Pelosi effect market</li>
               </ul>
             </li>
-            <li>Continue the Wharton competition, debates, pitches</li>
+            <li>Continue the Wharton competition, stock debates, stock pitches</li>
           </ul>
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Week 6+ — Advanced trading</h2>
+          <h2 className="text-xl font-semibold">Week 9+ — Continuations + Advanced Trading</h2>
           <ul className="mt-3 list-disc pl-6 space-y-2">
+            <li>Continue researching + investing responsibility</li>
+            <li>Continue stock pitches and debates</li>
             <li>Leveraging money RESPONSIBLY — MANY RISKS
               <ul className="mt-2 list-disc pl-6 space-y-1">
                 <li>Shorts</li>
@@ -82,8 +94,31 @@ export default function SchedulePage() {
         </article>
 
         <article className="rounded-lg border border-border bg-card p-6">
-          <h2 className="text-xl font-semibold">Specific Ideas / Events</h2>
+          <h2 className="text-xl font-semibold">Specific Ideas / Events Brainstorming</h2>
           <div className="mt-3 space-y-4">
+            <div>
+              <h3 className="font-semibold">Investopedia in-club competition</h3>
+              <ul className="mt-2 list-disc pl-6 space-y-1">
+                <li>Individual competition based on growth from September to May</li>
+                <li>Managed by officers with mandated full transparency</li>
+                <li>$100 end of year prize</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold"><a href="https://globalyouth.wharton.upenn.edu/competitions/investment-competition/" className="underline">Wharton Global High School Investment Competition</a></h3>
+              <ul className="mt-2 list-disc pl-6 space-y-1">
+                <li>Teams of 4–5</li>
+                <li>Compete within the club</li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold"><a href="https://yis.org/programs/stock-pitch-competition/" className="underline">Young Investors Society stock pitch competition</a></h3>
+              <ul className="mt-2 list-disc pl-6 space-y-1">
+                <li>Written stock pitch &amp; presentation + 10 minute video</li>
+                <li>Top 100 teams advance to global youth investment summit in NYC</li>
+                <li>February 20th deadline</li>
+              </ul>
+            </div>
             <div>
               <h3 className="font-semibold">Club Investment Fund</h3>
               <ul className="mt-2 list-disc pl-6 space-y-1">
