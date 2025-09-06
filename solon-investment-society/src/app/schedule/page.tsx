@@ -38,7 +38,7 @@ const meetings = [
   },
   {
     week: 'Week 1',
-    title: 'Guest Speaker — Elizabeth Kahykin (EY)',
+    title: 'Guest Speaker — Elizabeth Khaykin (EY)',
     badge: 'Guest Speaker',
     bullets: [
       'Career path as a Financial Analyst at EY',
