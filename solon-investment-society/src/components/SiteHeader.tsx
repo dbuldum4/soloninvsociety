@@ -3,11 +3,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+
+  // Prevent background scroll when the mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [mobileMenuOpen]);
 
   const navigation = [
     { name: 'About', href: '/about' },
@@ -46,10 +60,12 @@ export default function SiteHeader() {
         <div className="flex md:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground/70"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-foreground/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             onClick={() => setMobileMenuOpen(true)}
+            aria-label="Open main menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
           >
-            <span className="sr-only">Open main menu</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
@@ -64,60 +80,92 @@ export default function SiteHeader() {
         </div>
       </nav>
       
-      {/* Mobile menu */}
-      <div
-        className={`fixed inset-0 z-50 md:hidden ${mobileMenuOpen ? 'block' : 'hidden'}`}
-      >
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-        <div className="fixed inset-y-0 right-0 z-50 w-full max-w-sm overflow-y-auto bg-background px-6 py-6 sm:ring-1 sm:ring-foreground/10">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-2">
-              <Image 
-                src="/logo.jpg" 
-                alt="Solon Investment Society" 
-                width={32} 
-                height={32} 
-                className="h-8 w-8 rounded-full"
-              />
-              <span className="text-lg font-semibold">Solon Investment Society</span>
-            </Link>
-            <button
-              type="button"
-              className="-m-2.5 rounded-md p-2.5 text-foreground/70"
-              onClick={() => setMobileMenuOpen(false)}
+      {/* Mobile menu via Portal to avoid stacking issues */}
+      {typeof window !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <div
+              id="mobile-menu"
+              className="fixed inset-0 z-[100] md:hidden"
+              role="dialog"
+              aria-modal="true"
             >
-              <span className="sr-only">Close menu</span>
-              <X className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-border">
-              <div className="space-y-2 py-6">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-medium leading-7 text-foreground/90 hover:bg-muted"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
+              {/* Backdrop */}
+              <motion.div
+                className="fixed inset-0 bg-black/50 dark:bg-black/70"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setMobileMenuOpen(false)}
+              />
+              {/* Full-screen Panel for reliability on mobile */}
+              <motion.div
+                className="fixed inset-0 z-[101] bg-background px-6 py-6 overflow-y-auto"
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.16, ease: 'easeOut' }}
+              >
+                <div className="flex items-center justify-between">
+                  <Link href="/" className="flex items-center space-x-2" onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    setTimeout(() => router.push('/'), 160);
+                  }}>
+                    <Image 
+                      src="/logo.jpg" 
+                      alt="Solon Investment Society" 
+                      width={32} 
+                      height={32} 
+                      className="h-8 w-8 rounded-full"
+                    />
+                    <span className="text-lg font-semibold">Solon Investment Society</span>
                   </Link>
-                ))}
-              </div>
-              <div className="py-6 flex items-center justify-between gap-4">
-                <Link
-                  href="/schedule"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-medium leading-7 text-foreground/90 hover:bg-muted"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  View Schedule
-                </Link>
-                <ThemeToggle />
-              </div>
+                  <button
+                    type="button"
+                    className="-m-2.5 rounded-md p-2.5 text-foreground/80 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    onClick={() => setMobileMenuOpen(false)}
+                    aria-label="Close menu"
+                  >
+                    <X className="h-6 w-6" aria-hidden="true" />
+                  </button>
+                </div>
+                <nav className="mt-6 flex flex-col gap-1" aria-label="Mobile">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="block rounded-lg px-4 py-3 text-base font-semibold text-foreground hover:bg-muted focus:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setMobileMenuOpen(false);
+                        setTimeout(() => router.push(item.href), 160);
+                      }}
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </nav>
+                <div className="mt-6 flex items-center justify-between gap-4 border-t border-border pt-6">
+                  <a
+                    href="/schedule"
+                    className="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent/90"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      setTimeout(() => router.push('/schedule'), 160);
+                    }}
+                  >
+                    View Schedule
+                  </a>
+                  <ThemeToggle />
+                </div>
+              </motion.div>
             </div>
-          </div>
-        </div>
-      </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </header>
   );
 }
