@@ -1,79 +1,120 @@
+'use client';
+
+import { useState } from 'react';
+import Image from 'next/image';
+
 type Officer = {
   name: string;
   role: string;
   bio?: string;
   initials: string;
+  image?: string;
 };
 
 const officers: Officer[] = [
   {
+    name: "Jacob Khaykin",
+    role: "President of AI & Real World Applications",
+    initials: "JK",
+    image: "/officers/jacob-khaykin.jpg"
+  },
+  {
     name: "Avery Andrews",
-    role: "President",
+    role: "President of Investing",
     initials: "AA",
-    bio:
-      "3 years of investing experience with 30%+ return over the course of less than a year on various stock picks. Very well versed in financial ratios and company evaluation.",
+    image: "/officers/avery-andrews.jpg"
+  },
+  {
+    name: "Athulith Kanteti",
+    role: "President of Finance",
+    initials: "AK",
+    image: "/officers/athulith-kanteti.jpg"
   },
   {
     name: "Sanat Mudundi",
-    role: "Vice President",
+    role: "Secretary",
     initials: "SM",
-    bio:
-      "More than a year of investing experience and superb understanding of the markets. One of the most dedicated members on the team.",
+    image: "/officers/sanat-mudundi.jpg"
   },
   {
     name: "Deniz Buldum",
-    role: "Tech Lead / PR",
+    role: "Tech Lead",
     initials: "DB",
-    bio:
-      "3 years of safe investing with ~15% year-over-year returns and experience in businesses with various internships. Placed second in NASA hackathon, APCSA alum.",
-  },
-  {
-    name: "Akshat Sawner",
-    role: "Secretary",
-    initials: "AS",
-    bio:
-      "295% return over 3 years on Howthemarketworks.com, ranked 8th out of 3238 people with multiple stocks with above 100% return.",
+    image: "/officers/deniz-buldum.jpg"
   },
   {
     name: "Jonathan Parran",
-    role: "Head Consultant / Treasurer",
+    role: "Head Consultant",
     initials: "JP",
-    bio:
-      "4 years investing experience, 2,400% returns on crypto (bitcoin investor), managed an investing community with 2000 people.",
+    image: "/officers/jonathan-parran.jpg"
   },
+  {
+    name: "Jason Kaganovich",
+    role: "Head Consultant",
+    initials: "JK",
+    image: "/officers/jason-kaganovich.jpg"
+  },
+  {
+    name: "Ethan Belkin",
+    role: "Public Relations",
+    initials: "EB",
+    image: "/officers/ethan-belkin.jpg"
+  }
 ];
+
+function OfficerCard({ officer }: { officer: Officer }) {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <div className="p-6">
+        <div className="flex flex-col items-center text-center">
+          <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center mb-4 overflow-hidden">
+            {!imageError && officer.image ? (
+              <Image
+                src={officer.image}
+                alt={officer.name}
+                width={128}
+                height={128}
+                className="w-full h-full object-cover"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className="text-4xl font-bold text-blue-600">
+                {officer.initials}
+              </div>
+            )}
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900">
+            {officer.name}
+          </h3>
+          <p className="text-blue-600 font-medium">{officer.role}</p>
+          {officer.bio && (
+            <p className="mt-3 text-gray-600 text-sm">{officer.bio}</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function OfficersPage() {
   return (
-    <section className="relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        <h1 className="text-3xl font-bold tracking-tight">Officers</h1>
-        <p className="mt-3 text-sm text-muted-foreground">
-          All officers have either taken AP Economics or are currently taking it.
-        </p>
-        <p className="mt-4 text-muted-foreground">
-          Meet the student leaders who help run Solon Investment Society.
-        </p>
-
-        <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {officers.map((o) => (
-            <div key={o.name} className="rounded-lg border border-border bg-card p-6">
-              <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-accent text-accent-foreground grid place-items-center font-semibold">
-                  {o.initials}
-                </div>
-                <div>
-                  <h3 className="font-semibold leading-tight">{o.name}</h3>
-                  <p className="text-sm text-muted-foreground">{o.role}</p>
-                </div>
-              </div>
-              {Boolean(o.bio) && (
-                <p className="mt-4 text-sm text-muted-foreground">{o.bio}</p>
-              )}
-            </div>
+    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-4">Our Team</h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Meet the dedicated team leading the Solon Investment Society
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {officers.map((officer) => (
+            <OfficerCard key={officer.name} officer={officer} />
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
