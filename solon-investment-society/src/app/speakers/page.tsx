@@ -84,8 +84,8 @@ export default function SpeakersPage() {
         >
           <h2 className="text-2xl font-semibold mb-4">Interested in Speaking?</h2>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            We're always looking for industry professionals to share their insights with our members.
-            If you're interested in being a guest speaker, please reach out to us!
+            We&apos;re always looking for industry professionals to share their insights with our members.
+            If you&apos;re interested in being a guest speaker, please reach out to us!
           </p>
           <button className="px-6 py-3 bg-accent text-white rounded-lg hover:bg-accent/90 transition-colors">
             Contact Us
