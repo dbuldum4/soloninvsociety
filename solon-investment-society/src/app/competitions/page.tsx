@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 const competitions = [
   {
     id: 'wharton',
@@ -89,11 +87,8 @@ export default function CompetitionsPage() {
 
       <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {competitions.map((competition, index) => (
-          <motion.div
+          <div
             key={competition.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1 }}
             className="border rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
           >
             <div className="bg-gradient-to-r from-blue-600 to-blue-800 p-6 text-white">
@@ -159,11 +154,11 @@ export default function CompetitionsPage() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
-      <div className="mt-16 bg-blue-50 rounded-xl p-8 max-w-4xl mx-auto">
+      <div className="mt-16 bg-card rounded-xl p-8 max-w-4xl mx-auto border border-border">
         <h2 className="text-2xl font-bold mb-4 text-center">Investment Resources</h2>
         
         <div className="mt-6">
@@ -175,13 +170,13 @@ export default function CompetitionsPage() {
             href="https://www.investopedia.com/simulator" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center text-blue-600 hover:underline"
+            className="inline-flex items-center text-primary hover:underline"
           >
             Try Investopedia Simulator →
           </a>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="mt-8 pt-6 border-t border-border">
           <h2 className="text-2xl font-bold mb-4 text-center">Interested in Competing?</h2>
           <p className="text-lg text-muted-foreground mb-6 text-center">
             Join our club to get support, resources, and team matching for these competitions.
@@ -189,7 +184,7 @@ export default function CompetitionsPage() {
           <div className="text-center">
             <a
               href="mailto:soloninvestmentsociety@gmail.com"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-accent hover:bg-accent/90"
             >
               Contact Us to Join
             </a>

@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 // Calendar helpers
 const LOCATION = "Room 227 (Mr. Gielink), Solon High School";
 const toGCalStamp = (isoUtc: string) => isoUtc.replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
@@ -145,12 +143,9 @@ export default function SchedulePage() {
 
       <div className="max-w-3xl mx-auto space-y-6">
         {meetings.map((meeting, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.08 }}
-            className={`relative rounded-lg border p-6 ${meeting.highlight ? 'border-blue-500/60 bg-blue-50' : 'border-border bg-card'}`}
+            className={`relative rounded-lg border p-6 ${meeting.highlight ? 'border-blue-500/60 bg-blue-50 dark:bg-blue-900/20' : 'border-border bg-card'}`}
           >
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
@@ -209,14 +204,9 @@ export default function SchedulePage() {
                   ))}
                 </div>
               </div>
-              <a
-                href="#"
-                className="text-blue-600 hover:underline whitespace-nowrap flex-shrink-0"
-              >
-                Learn more →
-              </a>
+              <span className="text-muted-foreground whitespace-nowrap flex-shrink-0">&nbsp;</span>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>

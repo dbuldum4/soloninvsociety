@@ -66,10 +66,10 @@ function OfficerCard({ officer }: { officer: Officer }) {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+    <div className="border rounded-xl bg-card text-card-foreground overflow-hidden hover:shadow transition-shadow duration-300">
       <div className="p-6">
         <div className="flex flex-col items-center text-center">
-          <div className="relative w-32 h-32 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 flex items-center justify-center mb-4 overflow-hidden">
+          <div className="relative w-32 h-32 rounded-full bg-muted flex items-center justify-center mb-4 overflow-hidden">
             {!imageError && officer.image ? (
               <Image
                 src={officer.image}
@@ -80,17 +80,17 @@ function OfficerCard({ officer }: { officer: Officer }) {
                 onError={() => setImageError(true)}
               />
             ) : (
-              <div className="text-4xl font-bold text-blue-600">
+              <div className="text-4xl font-bold text-primary">
                 {officer.initials}
               </div>
             )}
           </div>
-          <h3 className="text-xl font-semibold text-gray-900">
+          <h3 className="text-xl font-semibold">
             {officer.name}
           </h3>
-          <p className="text-blue-600 font-medium">{officer.role}</p>
+          <p className="text-primary font-medium">{officer.role}</p>
           {officer.bio && (
-            <p className="mt-3 text-gray-600 text-sm">{officer.bio}</p>
+            <p className="mt-3 text-muted-foreground text-sm">{officer.bio}</p>
           )}
         </div>
       </div>
@@ -100,11 +100,11 @@ function OfficerCard({ officer }: { officer: Officer }) {
 
 export default function OfficersPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl mb-4">Our Team</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <h1 className="text-4xl font-bold sm:text-5xl mb-4">Our Team</h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Meet the dedicated team leading the Solon Investment Society
           </p>
         </div>

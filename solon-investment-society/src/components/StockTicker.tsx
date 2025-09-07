@@ -13,28 +13,18 @@ const stocks = [
 
 export default function StockTicker() {
   return (
-    <div className="w-full overflow-hidden bg-gray-50 py-4">
+    <div className="w-full overflow-hidden bg-muted py-2 border-b border-border">
       <div className="animate-ticker whitespace-nowrap">
         {[...stocks, ...stocks].map((stock, index) => (
-          <div key={`${stock.symbol}-${index}`} className="inline-flex items-center mx-8">
-            <span className="font-semibold mr-2">{stock.symbol}</span>
-            <span className="mr-4">${stock.price.toFixed(2)}</span>
-            <span className={`${stock.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+          <div key={`${stock.symbol}-${index}`} className="inline-flex items-center mx-6 text-sm">
+            <span className="font-semibold mr-2 text-foreground/80">{stock.symbol}</span>
+            <span className="mr-4 text-foreground/70">${stock.price.toFixed(2)}</span>
+            <span className={stock.change >= 0 ? 'text-green-500' : 'text-red-500'}>
               {stock.change >= 0 ? '↑' : '↓'} ${Math.abs(stock.change)} ({stock.changePercent}%)
             </span>
           </div>
         ))}
       </div>
-      <style jsx>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          display: inline-block;
-          animation: marquee 30s linear infinite;
-        }
-      `}</style>
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import StockTicker from "@/components/StockTicker";
-import PageTransition from "@/components/PageTransition";
+// PageTransition disabled per request
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,14 +54,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}>
         <StockTicker />
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">
-            <PageTransition>
-              {children}
-            </PageTransition>
+            {children}
           </main>
           {/* Footer removed to prevent duplication */}
         </div>
