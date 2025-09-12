@@ -1,6 +1,21 @@
 'use client';
 
 function formatRegistrationDeadline(deadline: string) {
+  // If the date is in YYYY-MM-DD format, parse as a local date to avoid timezone shifts
+  const isoDateOnly = /^\d{4}-\d{2}-\d{2}$/;
+  if (isoDateOnly.test(deadline)) {
+    const [yearStr, monthStr, dayStr] = deadline.split('-');
+    const year = Number(yearStr);
+    const month = Number(monthStr);
+    const day = Number(dayStr);
+    const dt = new Date(year, month - 1, day);
+    return dt.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
   const timestamp = Date.parse(deadline);
   if (!Number.isNaN(timestamp)) {
     return new Date(timestamp).toLocaleDateString('en-US', {
