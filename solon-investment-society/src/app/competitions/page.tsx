@@ -1,5 +1,17 @@
 'use client';
 
+function formatRegistrationDeadline(deadline: string) {
+  const timestamp = Date.parse(deadline);
+  if (!Number.isNaN(timestamp)) {
+    return new Date(timestamp).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+  return deadline;
+}
+
 const competitions = [
   {
     id: 'wharton',
@@ -7,9 +19,9 @@ const competitions = [
     organizer: 'University of Pennsylvania',
     registrationDeadline: '2025-09-12',
     competitionPeriod: 'October - December 2025',
-    description: 'A global competition where teams of 4-7 students manage a virtual $100,000 portfolio and compete against other schools worldwide.',
+    description: 'A global competition where teams of 4-6 students manage a virtual $100,000 portfolio and compete against other schools worldwide.',
     eligibility: 'High school students in grades 9-12',
-    teamSize: '4-7 students per team',
+    teamSize: '4-6 students per team',
     prizes: ['Global recognition', 'Scholarship opportunities', 'Networking with finance professionals'],
     website: 'https://globalyouth.wharton.upenn.edu/competitions/investment-competition/'
   },
@@ -17,13 +29,13 @@ const competitions = [
     id: 'npfc',
     name: 'National Personal Finance Challenge',
     organizer: 'Council for Economic Education',
-    registrationDeadline: 'Varies by state',
+    registrationDeadline: 'TBD',
     competitionPeriod: 'January - May 2026',
     description: 'A team competition that provides students with the opportunity to build and demonstrate their knowledge of earning income, spending, saving, investing, managing credit, and managing risk.',
     eligibility: 'High school students',
     teamSize: '3-4 students per team',
     prizes: ['National finals', 'Scholarships', 'Recognition'],
-    website: 'https://www.npfc.net/'
+    website: 'https://www.councilforeconed.org/programs/for-students/national-personal-finance-challenge/'
   },
   {
     id: 'yis',
@@ -99,13 +111,7 @@ export default function CompetitionsPage() {
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
                   <h3 className="text-sm font-medium text-muted-foreground">Registration Deadline</h3>
-                  <p className="font-medium">
-                    {new Date(competition.registrationDeadline).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    })}
-                  </p>
+                  <p className="font-medium">{formatRegistrationDeadline(competition.registrationDeadline)}</p>
                 </div>
                 <div>
                   <h3 className="text-sm font-medium text-muted-foreground">Competition Period</h3>
