@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 
-// Revalidate this route every 24 hours
-export const revalidate = 60 * 60 * 24; // 24h in seconds
-
 // For now, use a static list. Replace with a real data source if desired.
 const symbols = [
   { symbol: "AAPL", name: "Apple Inc." },
@@ -40,9 +37,18 @@ function generateDailyQuotes() {
 }
 
 export async function GET() {
-  // In a real integration, fetch from a data provider here and rely on Next's route caching
+  // In a real integration, fetch from a data provider here
   const data = generateDailyQuotes();
-  return NextResponse.json({ data, asOf: new Date().toISOString() });
+  return NextResponse.json(
+    { data, asOf: new Date().toISOString() },
+    {
+      headers: {
+        // Cache at CDN for 24h; browsers will use SWR for 10m
+        // Netlify respects standard Cache-Control headers
+        "Cache-Control": "public, max-age=0, s-maxage=86400, stale-while-revalidate=600",
+      },
+    }
+  );
 }
 
 
