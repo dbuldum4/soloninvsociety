@@ -5,6 +5,18 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export default function SpeakersPage() {
+  const speakers = [
+    {
+      name: 'Elizabeth Khaykin',
+      role: 'Financial Accounting Advisory Staff at EY',
+      bio: 'Elizabeth Khaykin is an alumnus of The Ohio State University, where she graduated Summa Cum Laude in Accounting & Finance. She is currently a part of the Financial Accounting Advisory Staff at EY.',
+    },
+    {
+      name: 'Tyler Dalton',
+      role: 'Senior Associate at Kaulig Capital',
+      bio: 'Tyler Dalton is a senior associate at Kaulig Capital. Tyler has significant experience in corporate finance, private accounting, financial modeling, and process integration.',
+    },
+  ];
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
@@ -22,9 +34,9 @@ export default function SpeakersPage() {
         </h1>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {[1, 2, 3, 4, 5, 6].map((speaker) => (
-            <div 
-              key={speaker} 
+          {speakers.map((speaker, index) => (
+            <div
+              key={speaker.name ?? index}
               className="border rounded-lg bg-card text-card-foreground overflow-hidden hover:shadow transition-shadow duration-300"
             >
               <div className="h-48 bg-muted flex items-center justify-center">
@@ -33,11 +45,9 @@ export default function SpeakersPage() {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Speaker {speaker}</h3>
-                <p className="text-muted-foreground mb-4">Position at Company</p>
-                <p className="text-sm text-muted-foreground">
-                  More details about the speaker will be added soon. Check back later for updates!
-                </p>
+                <h3 className="text-xl font-semibold mb-2">{speaker.name}</h3>
+                <p className="text-muted-foreground mb-4">{speaker.role}</p>
+                <p className="text-sm text-muted-foreground">{speaker.bio}</p>
               </div>
             </div>
           ))}
