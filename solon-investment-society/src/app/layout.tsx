@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sora, Playfair_Display, Geist_Mono } from "next/font/google";
+import { Sora, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import StockTicker from "@/components/StockTicker";
@@ -7,12 +7,6 @@ import Footer from "@/components/Footer";
 
 const sora = Sora({
   variable: "--font-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
 });
@@ -71,7 +65,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${sora.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${sora.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         <StockTicker />
         <div className="flex min-h-screen flex-col">

@@ -2,15 +2,27 @@
 
 /* ── Ticker ─────────────────────────────────────────── */
 @keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-1 * var(--ticker-shift, 0px)));
+  }
 }
 .animate-ticker {
-  display: inline-block;
+  display: flex;
+  width: max-content;
   white-space: nowrap;
+  will-change: transform;
   animation: ticker 28s linear infinite;
 }
-.animate-ticker:hover { animation-play-state: paused; }
+.ticker-group {
+  display: flex;
+  flex-shrink: 0;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
 
 /* ── Palette: dark-first fintech ───────────────────── */
 :root {
@@ -79,7 +91,6 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
   --font-mono: var(--font-mono);
 }
 
@@ -107,11 +118,6 @@ body {
 *:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
-}
-
-/* ── Headings: serif ───────────────────────────────── */
-h1, h2, h3 {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
 }
 
 /* ── Container ─────────────────────────────────────── */
