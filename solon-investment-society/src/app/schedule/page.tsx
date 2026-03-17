@@ -1,13 +1,16 @@
 'use client';
 
-// Calendar helpers
-const LOCATION = "Room 227 (Mr. Gielink), Solon High School";
-const toGCalStamp = (isoUtc: string) => isoUtc.replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
+import { CalendarDays, Clock, MapPin } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const LOCATION = 'Room 227 (Mr. Gielink), Solon High School';
+const toGCalStamp = (isoUtc: string) =>
+  isoUtc.replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
 const googleCalendarUrl = (
   title: string,
   startUtcISO: string,
   endUtcISO: string,
-  details?: string
+  details?: string,
 ) => {
   const dates = `${toGCalStamp(startUtcISO)}/${toGCalStamp(endUtcISO)}`;
   const params = new URLSearchParams({
@@ -15,7 +18,7 @@ const googleCalendarUrl = (
     text: title,
     dates,
     location: LOCATION,
-    details: details || ''
+    details: details || '',
   });
   return `https://calendar.google.com/calendar/render?${params.toString()}`;
 };
@@ -133,81 +136,136 @@ const meetings = [
 
 export default function SchedulePage() {
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold tracking-tight mb-4">Meeting Schedule</h1>
-        <p className="text-xl text-muted-foreground">
-          Mondays • 3:00 PM - 4:00 PM • Room 227 (Mr. Gielink)
+    <div className="container py-16 sm:py-24">
+      {/* Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+      >
+        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+          Schedule
         </p>
-      </div>
+        <h1 className="mt-2 text-4xl font-extrabold tracking-tighter sm:text-5xl">
+          Meeting Schedule
+        </h1>
+        <div className="mt-5 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
+          <span className="inline-flex items-center gap-1.5">
+            <CalendarDays className="h-3.5 w-3.5 text-primary" /> Mondays
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Clock className="h-3.5 w-3.5 text-primary" /> 3:00 – 4:00 PM
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <MapPin className="h-3.5 w-3.5 text-primary" /> Room 227 (Mr. Gielink)
+          </span>
+        </div>
+      </motion.div>
 
-      <div className="max-w-3xl mx-auto space-y-6">
-        {meetings.map((meeting, index) => (
-          <div
-            key={index}
-            className={`relative rounded-lg border p-6 ${meeting.highlight ? 'border-blue-500/60 bg-blue-50 dark:bg-blue-900/20' : 'border-border bg-card'}`}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
-                    {meeting.week}
+      {/* Timeline */}
+      <div className="relative mt-14 max-w-3xl">
+        <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
+
+        <div className="space-y-4">
+          {meetings.map((m, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: idx * 0.05, duration: 0.35 }}
+              className="relative pl-10"
+            >
+              {/* Dot */}
+              <div
+                className={`absolute left-1.5 top-5 h-3 w-3 rounded-full border-2 ${
+                  m.highlight
+                    ? 'border-primary bg-primary'
+                    : 'border-border bg-muted'
+                }`}
+              />
+
+              <div
+                className={`rounded-xl border p-5 transition-colors ${
+                  m.highlight
+                    ? 'border-primary/25 bg-primary/[0.04]'
+                    : 'border-border bg-card'
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-md bg-secondary px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
+                    {m.week}
                   </span>
-                  {meeting.badge && (
-                    <span className="inline-flex items-center rounded-full bg-blue-600/90 text-white px-2 py-0.5 text-xs font-semibold">
-                      {meeting.badge}
+                  {m.badge && (
+                    <span className="rounded-md bg-primary/15 px-2 py-0.5 text-[11px] font-semibold text-primary">
+                      {m.badge}
                     </span>
                   )}
                 </div>
-                <h2 className="text-lg sm:text-xl font-semibold leading-snug">{meeting.title}</h2>
-                {(meeting.date || meeting.dates) && (
-                  <div className="mt-1 text-sm text-muted-foreground">
-                    {meeting.date && <div>{meeting.date}</div>}
-                    {meeting.dates && (
-                      <ul className="list-disc list-inside space-y-0.5">
-                        {meeting.dates.map((d: string, i: number) => (
-                          <li key={i}>{d}</li>
-                        ))}
-                      </ul>
-                    )}
+
+                <h2 className="mt-2 text-base font-bold sm:text-lg">{m.title}</h2>
+
+                {(m.date || m.dates) && (
+                  <div className="mt-1 text-xs text-muted-foreground">
+                    {m.date && <span>{m.date}</span>}
+                    {m.dates &&
+                      m.dates.map((d: string, i: number) => (
+                        <span key={i} className="block">
+                          {d}
+                        </span>
+                      ))}
                   </div>
                 )}
-                {meeting.bullets && (
-                  <ul className="mt-3 space-y-1.5 text-sm text-muted-foreground list-disc list-inside">
-                    {meeting.bullets.map((item: string, i: number) => (
-                      <li key={i}>{item}</li>
+
+                {m.bullets && (
+                  <ul className="mt-3 space-y-1.5">
+                    {m.bullets.map((b: string, i: number) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-muted-foreground"
+                      >
+                        <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-primary/60" />
+                        {b}
+                      </li>
                     ))}
                   </ul>
                 )}
-                {/* Add to Calendar links */}
-                <div className="mt-4 flex flex-wrap gap-3">
-                  {meeting.startUtc && meeting.endUtc && (
+
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {m.startUtc && m.endUtc && (
                     <a
-                      href={googleCalendarUrl(meeting.title, meeting.startUtc, meeting.endUtc, 'Solon Investment Society meeting')}
+                      href={googleCalendarUrl(m.title, m.startUtc, m.endUtc, 'Solon Investment Society meeting')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:underline"
+                      className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary transition-colors hover:bg-primary/20"
                     >
+                      <CalendarDays className="h-3 w-3" />
                       Add to Calendar
                     </a>
                   )}
-                  {meeting.startsUtc && meeting.endsUtc && meeting.startsUtc.map((s: string, i: number) => (
-                    <a
-                      key={i}
-                      href={googleCalendarUrl(`${meeting.title} (${meeting.week} — Part ${i + 1})`, s, meeting.endsUtc[i], 'Solon Investment Society meeting')}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm font-medium text-blue-700 hover:underline"
-                    >
-                      Add to Calendar (#{i + 1})
-                    </a>
-                  ))}
+                  {m.startsUtc &&
+                    m.endsUtc &&
+                    m.startsUtc.map((s: string, i: number) => (
+                      <a
+                        key={i}
+                        href={googleCalendarUrl(
+                          `${m.title} (${m.week} — Part ${i + 1})`,
+                          s,
+                          m.endsUtc[i],
+                          'Solon Investment Society meeting',
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary transition-colors hover:bg-primary/20"
+                      >
+                        <CalendarDays className="h-3 w-3" />
+                        Add #{i + 1}
+                      </a>
+                    ))}
                 </div>
               </div>
-              <span className="text-muted-foreground whitespace-nowrap flex-shrink-0">&nbsp;</span>
-            </div>
-          </div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

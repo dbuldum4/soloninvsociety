@@ -1,249 +1,325 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BarChart2, Briefcase, Users, Mic } from "lucide-react";
+import {
+  ArrowRight,
+  BarChart3,
+  Briefcase,
+  TrendingUp,
+  Mic,
+  BookOpen,
+  ExternalLink,
+  Trophy,
+  Users,
+  Calendar,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-// Animations removed for now
+const show = {
+  hidden: { opacity: 0, y: 32 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: 0.1 + i * 0.08, duration: 0.55, ease: [0.25, 1, 0.5, 1] },
+  }),
+};
 
 export default function Home() {
-  const features = [
-    {
-      icon: <BarChart2 className="h-6 w-6 text-accent" />,
-      title: "Weekly Meetings",
-      desc: "Hands-on sessions covering markets, investing, and analysis."
-    },
-    {
-      icon: <Briefcase className="h-6 w-6 text-accent" />,
-      title: "Stock Pitches",
-      desc: "Develop research, build theses, and present to peers."
-    },
-    {
-      icon: <BarChart2 className="h-6 w-6 text-accent" />,
-      title: "Portfolio Challenge",
-      desc: "Simulated investing with friendly competition."
-    },
-    {
-      icon: <Mic className="h-6 w-6 text-accent" />,
-      title: "Guest Speakers",
-      desc: "Hear from finance professionals and alumni."
-    }
-  ];
-
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section 
-        className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-accent text-white"
-      >
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        <div className="relative max-w-7xl mx-auto px-6 py-24 sm:py-32 lg:py-40">
-          <div className="text-center">
-            <h1 
-              className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
+    <div className="flex flex-col">
+      {/* ───── Hero ───── */}
+      <section className="relative isolate overflow-hidden border-b border-border">
+        {/* Background grid */}
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)",
+              backgroundSize: "64px 64px",
+            }}
+          />
+          <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[600px] w-[900px] rounded-full bg-primary/10 blur-[120px]" />
+        </div>
+
+        <div className="container py-28 sm:py-36 lg:py-44">
+          <motion.div
+            className="mx-auto max-w-3xl text-center"
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div
+              variants={show}
+              custom={0}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3.5 py-1 text-xs font-medium text-muted-foreground"
             >
-              Solon Investment Society
-            </h1>
-            <p 
-              className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl text-blue-100"
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              Solon High School Investment Club
+            </motion.div>
+
+            <motion.h1
+              variants={show}
+              custom={1}
+              className="mt-8 text-5xl font-extrabold tracking-tighter sm:text-7xl lg:text-8xl"
             >
-              Empowering the next generation of investors at Solon High School. Learn, analyze, and compete in the world of finance.
-            </p>
-            <div 
-              className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+              Invest in
+              <br />
+              <span className="text-primary">your future.</span>
+            </motion.h1>
+
+            <motion.p
+              variants={show}
+              custom={2}
+              className="mx-auto mt-6 max-w-lg text-base text-muted-foreground sm:text-lg"
             >
-              <Link 
-                href="/schedule" 
-                className="flex items-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-900 shadow-sm hover:bg-blue-50 transition-colors duration-200"
+              Learn markets, build portfolios, compete in stock pitches, and
+              discover the world of finance — all at Solon High School.
+            </motion.p>
+
+            <motion.div
+              variants={show}
+              custom={3}
+              className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+            >
+              <Link
+                href="/schedule"
+                className="group inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
                 View Schedule
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <Link 
-                href="/speakers" 
-                className="flex items-center gap-2 rounded-md border-2 border-white px-6 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors duration-200"
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
               >
-                View Speakers
+                Learn More
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background to-transparent" />
       </section>
 
-      {/* Features Section */}
-      <section 
-        className="py-16 sm:py-24 bg-background"
-      >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">What We Offer</h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Comprehensive financial education through hands-on experience and expert guidance
-            </p>
-          </div>
-
-          <div 
-            className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {features.map((feature, index) => (
-              <div 
-                key={feature.title}
-                className="group relative rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10 mb-4">
-                  {feature.icon}
-                </div>
-                <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{feature.desc}</p>
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-accent/20 transition-all duration-300 pointer-events-none" />
+      {/* ───── Stats strip ───── */}
+      <section className="border-b border-border bg-muted/30">
+        <div className="container grid grid-cols-2 divide-x divide-border sm:grid-cols-4">
+          {[
+            { label: "Active Members", value: "50+" },
+            { label: "Weekly Meetings", value: "Every Mon" },
+            { label: "Competitions", value: "6+" },
+            { label: "Guest Speakers", value: "3+" },
+          ].map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              className="px-4 py-6 text-center sm:py-8"
+            >
+              <div className="text-2xl font-extrabold tracking-tight text-primary sm:text-3xl">
+                {stat.value}
               </div>
-            ))}
-          </div>
+              <div className="mt-1 text-xs font-medium text-muted-foreground">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Investment Resources Section */}
-      <section 
-        className="py-16 bg-card"
-      >
-        <div className="container mx-auto px-4">
-          <div
-            className="text-center mb-12"
+      {/* ───── Bento features ───── */}
+      <section className="container py-20 sm:py-28">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+            What we do
+          </p>
+          <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Everything you need to start investing.
+          </h2>
+        </motion.div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2">
+          {/* Large card */}
+          <BentoCard
+            i={0}
+            className="lg:col-span-2 lg:row-span-2"
+            icon={<BarChart3 className="h-5 w-5" />}
+            title="Weekly Meetings"
+            body="Hands-on sessions every Monday covering markets, investing strategies, financial analysis, and real-time portfolio management."
+            large
+          />
+          <BentoCard
+            i={1}
+            icon={<Briefcase className="h-5 w-5" />}
+            title="Stock Pitches"
+            body="Develop research, build investment theses, and present to peers for feedback."
+          />
+          <BentoCard
+            i={2}
+            icon={<TrendingUp className="h-5 w-5" />}
+            title="Portfolio Challenge"
+            body="Simulated investing with real market data and friendly competition between members."
+          />
+          <BentoCard
+            i={3}
+            icon={<Mic className="h-5 w-5" />}
+            title="Guest Speakers"
+            body="Hear from finance professionals, analysts, and accomplished alumni."
+          />
+          <BentoCard
+            i={4}
+            icon={<Trophy className="h-5 w-5" />}
+            title="Competitions"
+            body="Compete nationwide in Wharton, NPFC, Young Investors, and more."
+          />
+        </div>
+      </section>
+
+      {/* ───── Resources ───── */}
+      <section className="border-t border-border bg-muted/30 py-20 sm:py-28">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mb-12"
           >
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-              Learning Resources
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Essential tools and resources to enhance your investment knowledge
+            <p className="text-xs font-semibold uppercase tracking-widest text-primary">
+              Resources
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h2 className="mt-2 text-3xl font-extrabold tracking-tight sm:text-4xl">
+              Level up your knowledge.
+            </h2>
+          </motion.div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              {
-                title: "Investopedia Academy",
-                description: "Learn the essentials of investing with comprehensive courses.",
-                link: "https://www.investopedia.com/investing-4427685",
-                image: "",
-                color: ""
-              },
-              {
-                title: "Yahoo Finance",
-                description: "Track markets, get financial news, and manage your portfolio.",
-                link: "https://finance.yahoo.com/",
-                image: "",
-                color: ""
-              },
-              {
-                title: "Bloomberg Markets",
-                description: "Global business and financial market news and analysis.",
-                link: "https://www.bloomberg.com/markets",
-                image: "",
-                color: ""
-              },
-              {
-                title: "Seeking Alpha",
-                description: "Stock market insights and investment research.",
-                link: "https://seekingalpha.com/",
-                image: "",
-                color: ""
-              },
-              {
-                title: "Morningstar",
-                description: "Independent investment research and ratings.",
-                link: "https://www.morningstar.com/",
-                image: "",
-                color: ""
-              },
-              {
-                title: "Khan Academy - Finance",
-                description: "Free courses on finance and capital markets.",
-                link: "https://www.khanacademy.org/economics-finance-domain/core-finance",
-                image: "",
-                color: ""
-              }
-            ].map((resource, index) => (
-              <a
-                key={resource.title}
-                href={resource.link}
+              { title: "Investopedia Academy", desc: "Comprehensive investing courses and guides.", link: "https://www.investopedia.com/investing-4427685" },
+              { title: "Yahoo Finance", desc: "Track markets, financial news, and portfolios.", link: "https://finance.yahoo.com/" },
+              { title: "Bloomberg Markets", desc: "Global business and financial market analysis.", link: "https://www.bloomberg.com/markets" },
+              { title: "Seeking Alpha", desc: "Stock market insights and investment research.", link: "https://seekingalpha.com/" },
+              { title: "Morningstar", desc: "Independent investment research and ratings.", link: "https://www.morningstar.com/" },
+              { title: "Khan Academy — Finance", desc: "Free courses on finance and capital markets.", link: "https://www.khanacademy.org/economics-finance-domain/core-finance" },
+            ].map((r, i) => (
+              <motion.a
+                key={r.title}
+                href={r.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block group"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.05, duration: 0.35 }}
+                className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 transition-colors hover:border-primary/30 hover:bg-primary/[0.03]"
               >
-                <div className={`h-full card`}>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold group-hover:text-primary transition-colors mb-2">
-                      {resource.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">{resource.description}</p>
-                    <div className="flex items-center text-primary font-medium group-hover:translate-x-1 transition-transform">
-                      Visit Resource
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
-                    </div>
-                  </div>
+                <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <BookOpen className="h-4 w-4" />
                 </div>
-              </a>
+                <div className="min-w-0">
+                  <h3 className="text-sm font-semibold group-hover:text-primary transition-colors">
+                    {r.title}
+                  </h3>
+                  <p className="mt-0.5 text-xs text-muted-foreground leading-relaxed">
+                    {r.desc}
+                  </p>
+                </div>
+                <ExternalLink className="ml-auto mt-1 h-3.5 w-3.5 flex-shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+              </motion.a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section 
-        className="bg-gradient-to-r from-blue-900 to-accent text-white py-16"
-      >
-        <div className="max-w-7xl mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Ready to Join Us?</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-blue-100">
-            Contact us at: <a href="mailto:soloninvestmentsociety@gmail.com" className="text-white font-semibold hover:underline">soloninvestmentsociety@gmail.com</a>
-          </p>
-          <div className="mt-8">
-            <Link 
-              href="/schedule" 
-              className="inline-flex items-center gap-2 rounded-md bg-white px-6 py-3 text-sm font-semibold text-blue-900 shadow-sm hover:bg-blue-50 transition-colors duration-200"
-            >
-              View Meeting Schedule
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+      {/* ───── CTA ───── */}
+      <section className="relative isolate overflow-hidden border-t border-border">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute left-1/2 bottom-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-primary/8 blur-[100px]" />
+        </div>
+        <div className="container py-20 text-center sm:py-28">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="text-4xl font-extrabold tracking-tighter sm:text-5xl">
+              Ready to get started?
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-muted-foreground">
+              Reach out at{" "}
+              <a
+                href="mailto:soloninvestmentsociety@gmail.com"
+                className="font-medium text-primary hover:underline"
+              >
+                soloninvestmentsociety@gmail.com
+              </a>
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                href="/schedule"
+                className="group inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                Meeting Schedule
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </Link>
+              <Link
+                href="/competitions"
+                className="inline-flex items-center gap-2 rounded-lg border border-border px-5 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
+              >
+                Browse Competitions
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer 
-        className="bg-background border-t border-border mt-auto"
-      >
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-semibold">Solon Investment Society</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Empowering students with financial literacy and investment knowledge.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold">Quick Links</h4>
-              <ul className="mt-4 space-y-2">
-                <li><Link href="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">About Us</Link></li>
-                <li><Link href="/schedule" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Schedule</Link></li>
-                <li><Link href="/officers" className="text-sm text-muted-foreground hover:text-foreground transition-colors">Officers</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-sm font-semibold">Contact</h4>
-              <p className="mt-4 text-sm text-muted-foreground">
-                Solon High School<br />
-                33600 Inwood Dr, Solon, OH 44139
-              </p>
-            </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Solon Investment Society. All rights reserved.
-          </div>
-        </div>
-      </footer>
     </div>
+  );
+}
+
+/* ─── Bento card ─── */
+function BentoCard({
+  icon,
+  title,
+  body,
+  className = "",
+  large = false,
+  i,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  body: string;
+  className?: string;
+  large?: boolean;
+  i: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: i * 0.07, duration: 0.4 }}
+      className={`group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/25 ${
+        large ? "flex flex-col justify-between sm:p-8" : ""
+      } ${className}`}
+    >
+      <div>
+        <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+          {icon}
+        </div>
+        <h3 className={`font-bold ${large ? "text-xl sm:text-2xl" : "text-base"}`}>
+          {title}
+        </h3>
+        <p className={`mt-2 leading-relaxed text-muted-foreground ${large ? "text-sm sm:text-base" : "text-sm"}`}>
+          {body}
+        </p>
+      </div>
+      {/* Decorative gradient on hover */}
+      <div className="pointer-events-none absolute -bottom-12 -right-12 h-40 w-40 rounded-full bg-primary/5 blur-3xl transition-opacity opacity-0 group-hover:opacity-100" />
+    </motion.div>
   );
 }

@@ -34,46 +34,41 @@ export default function StockTicker() {
           return;
         }
       }
-    } catch {
-      // Ignore cache parse errors
-    }
+    } catch { /* ignore */ }
 
     const fetchQuotes = async () => {
       try {
         const res = await fetch('/api/tickers');
-        if (!res.ok) throw new Error('Failed to fetch tickers');
+        if (!res.ok) throw new Error('bad');
         const json = await res.json();
         const data = (json?.data ?? []) as Stock[];
         if (Array.isArray(data) && data.length > 0) {
           setStocks(data);
-          try {
-            localStorage.setItem(
-              LOCAL_STORAGE_KEY,
-              JSON.stringify({ timestamp: Date.now(), data })
-            );
-          } catch {
-            // Ignore storage write errors
-          }
+          try { localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ timestamp: Date.now(), data })); } catch { /* ignore */ }
         }
-      } catch {
-        // Leave defaults on error
-      }
+      } catch { /* ignore */ }
     };
-
     fetchQuotes();
   }, []);
 
+  const Item = ({ s }: { s: Stock }) => {
+    const up = s.change >= 0;
+    return (
+      <span className="inline-flex items-center gap-1.5 mx-4 font-mono text-[11px] tracking-wide">
+        <span className="font-bold text-foreground">{s.symbol}</span>
+        <span className="text-muted-foreground">{s.price.toFixed(2)}</span>
+        <span className={up ? 'text-emerald-400' : 'text-red-400'}>
+          {up ? '+' : ''}{s.changePercent.toFixed(2)}%
+        </span>
+      </span>
+    );
+  };
+
   return (
-    <div className="w-full overflow-hidden bg-muted py-2 border-b border-border">
-      <div className="animate-ticker whitespace-nowrap">
-        {[...stocks, ...stocks].map((stock, index) => (
-          <div key={`${stock.symbol}-${index}`} className="inline-flex items-center mx-6 text-sm">
-            <span className="font-semibold mr-2 text-foreground/80">{stock.symbol}</span>
-            <span className="mr-4 text-foreground/70">${stock.price.toFixed(2)}</span>
-            <span className={stock.change >= 0 ? 'text-green-500' : 'text-red-500'}>
-              {stock.change >= 0 ? '↑' : '↓'} ${Math.abs(stock.change).toFixed(2)} ({stock.changePercent.toFixed(2)}%)
-            </span>
-          </div>
+    <div className="w-full overflow-hidden border-b border-border bg-muted/50 py-1.5">
+      <div className="animate-ticker">
+        {[...stocks, ...stocks].map((s, i) => (
+          <Item key={`${s.symbol}-${i}`} s={s} />
         ))}
       </div>
     </div>

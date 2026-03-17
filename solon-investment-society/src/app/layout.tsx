@@ -1,18 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora, Playfair_Display, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import StockTicker from "@/components/StockTicker";
-// PageTransition disabled per request
+import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
   display: "swap",
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
   subsets: ["latin"],
   display: "swap",
 });
@@ -20,10 +26,18 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "Solon Investment Society",
-    template: "%s | Solon Investment Society"
+    template: "%s | Solon Investment Society",
   },
-  description: "Empowering the next generation of investors at Solon High School. Learn markets, build portfolios, and compete in stock pitches.",
-  keywords: ["investment", "finance", "stock market", "trading", "Solon High School", "student club"],
+  description:
+    "Empowering the next generation of investors at Solon High School. Learn markets, build portfolios, and compete in stock pitches.",
+  keywords: [
+    "investment",
+    "finance",
+    "stock market",
+    "trading",
+    "Solon High School",
+    "student club",
+  ],
   authors: [{ name: "Solon Investment Society" }],
   creator: "Solon Investment Society",
   icons: {
@@ -36,13 +50,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://soloninvestmentsociety.org",
     title: "Solon Investment Society",
-    description: "Empowering the next generation of investors at Solon High School.",
+    description:
+      "Empowering the next generation of investors at Solon High School.",
     siteName: "Solon Investment Society",
   },
   twitter: {
     card: "summary_large_image",
     title: "Solon Investment Society",
-    description: "Empowering the next generation of investors at Solon High School.",
+    description:
+      "Empowering the next generation of investors at Solon High School.",
     creator: "@soloninvest",
   },
 };
@@ -54,14 +70,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}>
+      <body
+        className={`${sora.variable} ${playfair.variable} ${geistMono.variable} font-sans antialiased bg-background text-foreground`}
+      >
         <StockTicker />
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="flex-1">
-            {children}
-          </main>
-          {/* Footer removed to prevent duplication */}
+          <main className="flex-1">{children}</main>
+          <Footer />
         </div>
       </body>
     </html>

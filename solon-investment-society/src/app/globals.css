@@ -1,65 +1,61 @@
 @import "tailwindcss";
 
+/* ── Ticker ─────────────────────────────────────────── */
 @keyframes ticker {
-  0% { transform: translateX(0); }
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
 .animate-ticker {
   display: inline-block;
   white-space: nowrap;
-  animation: ticker 30s linear infinite;
+  animation: ticker 28s linear infinite;
 }
+.animate-ticker:hover { animation-play-state: paused; }
 
-.animate-ticker:hover {
-  animation-play-state: paused;
-}
-
+/* ── Palette: dark-first fintech ───────────────────── */
 :root {
-  /* Brand palette */
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #1e40af;
-  --primary-foreground: #f8fafc;
-  --secondary: #f1f5f9;
-  --secondary-foreground: #0f172a;
-  --accent: #1e40af;
-  --accent-foreground: #ffffff;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --card: #111113;
+  --card-foreground: #fafafa;
+  --popover: #111113;
+  --popover-foreground: #fafafa;
+  --primary: #10b981;
+  --primary-foreground: #022c22;
+  --secondary: #1c1c1f;
+  --secondary-foreground: #fafafa;
+  --accent: #10b981;
+  --accent-foreground: #022c22;
   --destructive: #ef4444;
-  --destructive-foreground: #f8fafc;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #1e40af;
-  --radius: 0.5rem;
+  --destructive-foreground: #fafafa;
+  --border: #232326;
+  --input: #232326;
+  --ring: #10b981;
+  --radius: 0.75rem;
 }
 
-.dark {
-  /* Dark palette overrides */
-  --background: #0b1220;
-  --foreground: #e5e7eb;
-  --muted: #0f172a;
-  --muted-foreground: #9ca3af;
-  --card: #0f172a;
-  --card-foreground: #e5e7eb;
-  --popover: #0f172a;
-  --popover-foreground: #e5e7eb;
-  --primary: #60a5fa;
-  --primary-foreground: #0b1220;
-  --secondary: #111827;
-  --secondary-foreground: #e5e7eb;
-  --accent: #2563eb;
-  --accent-foreground: #e5e7eb;
-  --destructive: #ef4444;
-  --destructive-foreground: #0b1220;
-  --border: #1f2937;
-  --input: #1f2937;
-  --ring: #60a5fa;
+.light {
+  --background: #fafafa;
+  --foreground: #09090b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #059669;
+  --primary-foreground: #ecfdf5;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #09090b;
+  --accent: #059669;
+  --accent-foreground: #ecfdf5;
+  --destructive: #dc2626;
+  --destructive-foreground: #fafafa;
+  --border: #e4e4e7;
+  --input: #e4e4e7;
+  --ring: #059669;
 }
 
 @theme inline {
@@ -82,133 +78,43 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-radius: var(--radius);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono: var(--font-mono);
 }
 
-/* Base Styles */
-* {
-  @apply border-border;
-}
+/* ── Base ──────────────────────────────────────────── */
+* { @apply border-border; }
 
 body {
   @apply bg-background text-foreground antialiased;
   font-feature-settings: "rlig" 1, "calt" 1;
   min-height: 100vh;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted-foreground); }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.6s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.6s ease-out forwards;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--muted);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--muted-foreground);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--foreground);
-}
-
-/* Selection */
 ::selection {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--primary);
+  color: var(--primary-foreground);
 }
 
-/* Focus Styles */
 *:focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
-  border-radius: var(--radius);
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-bold tracking-tight;
-  line-height: 1.2;
+/* ── Headings: serif ───────────────────────────────── */
+h1, h2, h3 {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
 }
 
-h1 { @apply text-4xl sm:text-5xl lg:text-6xl; }
-h2 { @apply text-3xl sm:text-4xl; }
-h3 { @apply text-2xl sm:text-3xl; }
-h4 { @apply text-xl sm:text-2xl; }
-h5 { @apply text-lg sm:text-xl; }
-h6 { @apply text-base sm:text-lg; }
-
-/* Buttons */
-.btn {
-  @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
-  @apply h-10 py-2 px-4;
-}
-
-.btn-primary {
-  @apply bg-primary text-primary-foreground hover:bg-primary/90;
-}
-
-.btn-secondary {
-  @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
-}
-
-.btn-accent {
-  @apply bg-accent text-accent-foreground hover:bg-accent/90;
-}
-
-/* Cards */
-.card {
-  @apply rounded-lg border bg-card text-card-foreground shadow-sm overflow-hidden transition-all duration-300 hover:shadow-md;
-}
-
-/* Container */
+/* ── Container ─────────────────────────────────────── */
 .container {
-  @apply w-full px-4 mx-auto max-w-7xl sm:px-6 lg:px-8;
+  @apply w-full px-5 mx-auto max-w-7xl sm:px-8;
 }
-
-/* Section */
-.section {
-  @apply py-16 sm:py-24;
-}
-
-/* Grid */
-.grid-auto-fit {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
-  gap: 1.5rem;
-}
-
-/* Aspect Ratio */
-.aspect-video {
-  aspect-ratio: 16/9;
-}
-
-/* Animation Delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
