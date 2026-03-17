@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Netlify Stock Check
+
+This site includes a scheduled Netlify function at `netlify/functions/check-stock-prices.mjs`.
+
+It runs once per day with the `@daily` schedule and compares the live `/api/tickers` output against fresh Nasdaq quotes for the configured symbols. After deployment, open the Netlify `Functions` page, select `check-stock-prices`, and use `Run now` to test it or inspect logs.
+
+Optional environment variables:
+
+- `STOCK_CHECK_SITE_URL`
+- `STOCK_CHECK_SYMBOLS`
+- `STOCK_CHECK_MAX_DRIFT_PCT`
+- `STOCK_CHECK_MAX_AGE_HOURS`
+- `STOCK_CHECK_WEBHOOK_URL`
