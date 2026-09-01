@@ -1,12 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const NAV = [
@@ -19,159 +17,82 @@ const NAV = [
 
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
   const pathname = usePathname();
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 4);
-    fn();
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  const go = (href: string) => {
-    setOpen(false);
-    setTimeout(() => router.push(href), 180);
-  };
-
   return (
-    <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/80 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
-    >
-      <nav className="container flex h-14 items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/logo.jpg"
-            alt="SIS"
-            width={28}
-            height={28}
-            className="rounded-full"
-          />
-          <span className="text-sm font-semibold tracking-tight hidden sm:block">
-            Solon Investment Society
-          </span>
+    <header className="relative z-50 bg-background/95 backdrop-blur-md">
+      <div className="container flex h-[74px] items-center border-b-2 rule md:h-[78px]">
+        <Link href="/" className="text-[16px] font-bold tracking-[-0.035em] sm:text-[18px]">
+          Solon Investment Society
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`rounded-md px-3 py-1.5 text-[13px] font-medium transition-colors ${
-                  active
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {item.name}
-              </Link>
-            );
-          })}
-        </div>
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex" aria-label="Primary navigation">
+          {NAV.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`relative py-2 text-[12px] font-medium transition-colors hover:text-primary ${pathname === item.href ? "text-primary" : "text-foreground"}`}
+            >
+              {item.name}
+              {pathname === item.href && (
+                <motion.span layoutId="nav-active" className="absolute inset-x-0 -bottom-[22px] h-0.5 bg-primary" />
+              )}
+            </Link>
+          ))}
+        </nav>
 
-        {/* Desktop right */}
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="ml-auto hidden items-center gap-5 md:flex">
+          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-primary">
+            Est. 2023
+          </span>
           <ThemeToggle />
-          <Link
-            href="/schedule"
-            className="rounded-md bg-primary px-3.5 py-1.5 text-[13px] font-semibold text-primary-foreground transition-opacity hover:opacity-90"
-          >
-            View Schedule
-          </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
-          className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground md:hidden"
-          onClick={() => setOpen(true)}
-          aria-label="Open menu"
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          className="ml-auto grid h-10 w-10 place-items-center md:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
         >
-          <Menu className="h-5 w-5" />
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
-      </nav>
+      </div>
 
-      {/* Mobile overlay */}
-      {typeof window !== "undefined" &&
-        createPortal(
-          <AnimatePresence>
-            {open && (
-              <div className="fixed inset-0 z-[100] md:hidden" role="dialog" aria-modal="true">
-                <motion.div
-                  className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onClick={() => setOpen(false)}
-                />
-                <motion.div
-                  className="absolute inset-0 z-10 flex flex-col bg-background px-5 py-5"
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <button onClick={() => go("/")} className="flex items-center gap-2">
-                      <Image src="/logo.jpg" alt="SIS" width={28} height={28} className="rounded-full" />
-                      <span className="text-sm font-semibold">Solon Investment Society</span>
-                    </button>
-                    <button
-                      onClick={() => setOpen(false)}
-                      className="rounded-md p-2 text-muted-foreground hover:text-foreground"
-                      aria-label="Close menu"
-                    >
-                      <X className="h-5 w-5" />
-                    </button>
-                  </div>
-
-                  <nav className="mt-10 flex flex-col gap-1">
-                    {NAV.map((item) => {
-                      const active = pathname === item.href;
-                      return (
-                        <button
-                          key={item.name}
-                          onClick={() => go(item.href)}
-                          className={`rounded-lg px-4 py-3 text-left text-base font-medium transition-colors ${
-                            active
-                              ? "bg-primary/10 text-primary"
-                              : "text-muted-foreground hover:text-foreground hover:bg-secondary"
-                          }`}
-                        >
-                          {item.name}
-                        </button>
-                      );
-                    })}
-                  </nav>
-
-                  <div className="mt-auto flex items-center justify-between border-t border-border pt-5">
-                    <button
-                      onClick={() => go("/schedule")}
-                      className="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                    >
-                      View Schedule
-                    </button>
-                    <ThemeToggle />
-                  </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-0 top-[74px] h-[calc(100dvh-74px)] bg-background md:hidden"
+          >
+            <nav className="container flex h-full flex-col py-8" aria-label="Mobile navigation">
+              {NAV.map((item, index) => (
+                <motion.div key={item.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.045 }}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center justify-between border-b py-4 text-3xl font-semibold tracking-[-0.045em] hairline ${pathname === item.href ? "text-primary" : "text-foreground"}`}
+                  >
+                    {item.name}<span className="font-mono text-xs">0{index + 1}</span>
+                  </Link>
                 </motion.div>
+              ))}
+              <div className="mt-auto flex items-center justify-between border-t py-5 rule">
+                <span className="eyebrow">Theme</span>
+                <ThemeToggle showLabel />
               </div>
-            )}
-          </AnimatePresence>,
-          document.body,
+            </nav>
+          </motion.div>
         )}
+      </AnimatePresence>
     </header>
   );
 }

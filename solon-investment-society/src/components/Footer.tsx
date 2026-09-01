@@ -1,58 +1,42 @@
 import Link from "next/link";
 
+const links = [
+  { label: "About", href: "/about" },
+  { label: "Schedule", href: "/schedule" },
+  { label: "Competitions", href: "/competitions" },
+  { label: "Speakers", href: "/speakers" },
+  { label: "Officers", href: "/officers" },
+];
+
 export default function Footer() {
   return (
-    <footer className="border-t border-border">
-      <div className="container py-10">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
-          <div className="col-span-2">
-            <h3 className="text-sm font-bold">Solon Investment Society</h3>
-            <p className="mt-2 max-w-xs text-xs leading-relaxed text-muted-foreground">
-              Empowering students with financial literacy, practical investing
-              skills, and the confidence to make informed financial decisions.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Links
-            </h4>
-            <ul className="mt-3 space-y-2">
-              {[
-                { label: "About", href: "/about" },
-                { label: "Schedule", href: "/schedule" },
-                { label: "Competitions", href: "/competitions" },
-                { label: "Officers", href: "/officers" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className="text-xs text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Contact
-            </h4>
-            <div className="mt-3 space-y-2 text-xs text-muted-foreground">
-              <p>Solon High School</p>
-              <p>33600 Inwood Dr, Solon, OH 44139</p>
-              <a
-                href="mailto:soloninvestmentsociety@gmail.com"
-                className="block transition-colors hover:text-foreground"
-              >
-                soloninvestmentsociety@gmail.com
-              </a>
-            </div>
-          </div>
+    <footer className="container mt-16 border-t-2 rule sm:mt-24">
+      <div className="grid gap-10 py-7 sm:grid-cols-2 lg:grid-cols-[1.3fr_.7fr_1fr] lg:gap-16">
+        <div>
+          <h2 className="text-xs font-bold">Solon Investment Society</h2>
+          <p className="mt-3 max-w-sm text-[11px] leading-relaxed text-muted-foreground">
+            Empowering students with financial literacy, practical investing skills, and real-world market experience.
+          </p>
         </div>
-        <div className="mt-8 border-t border-border pt-5 text-center text-[11px] text-muted-foreground">
-          &copy; {new Date().getFullYear()} Solon Investment Society
+        <div>
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.08em]">Links</h3>
+          <ul className="mt-3 grid grid-cols-2 gap-x-5 gap-y-1 lg:grid-cols-1">
+            {links.map((link) => (
+              <li key={link.href}><Link className="text-[11px] text-muted-foreground hover:text-primary" href={link.href}>{link.label}</Link></li>
+            ))}
+          </ul>
         </div>
+        <div>
+          <h3 className="text-[10px] font-bold uppercase tracking-[0.08em]">Contact</h3>
+          <address className="mt-3 text-[11px] not-italic leading-relaxed text-muted-foreground">
+            Solon High School<br />33600 Inwood School Dr, Solon, OH 44139<br />
+            <a className="break-all hover:text-primary" href="mailto:soloninvestmentsociety@gmail.com">soloninvestmentsociety@gmail.com</a>
+          </address>
+        </div>
+      </div>
+      <div className="flex flex-col gap-2 border-t py-4 text-[10px] uppercase tracking-[0.06em] text-muted-foreground hairline sm:flex-row sm:justify-between">
+        <span>© {new Date().getFullYear()} Solon Investment Society</span>
+        <span>Learn · Research · Invest</span>
       </div>
     </footer>
   );

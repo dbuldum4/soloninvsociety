@@ -27,42 +27,33 @@ const speakers = [
 
 export default function SpeakersPage() {
   return (
-    <div className="container py-16 sm:py-24">
-      {/* Header */}
-      <motion.div
+    <div className="container">
+      <motion.header
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-2xl"
+        className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
       >
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          Speakers
-        </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tighter sm:text-5xl">
-          Guest Speakers
-        </h1>
-        <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-          Industry professionals sharing insights and real-world experience.
-        </p>
-      </motion.div>
+        <div><p className="eyebrow">Guest speakers</p><h1 className="page-title mt-6">Experience, shared.</h1></div>
+        <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Industry professionals bring candid career stories and real-world financial insight into the room.</p>
+      </motion.header>
 
-      {/* Speaker cards */}
-      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid lg:grid-cols-3">
         {speakers.map((s, i) => (
           <motion.div
             key={s.name}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.1, duration: 0.45 }}
-            className="group overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/25"
+            className={`group py-10 lg:px-8 ${i < speakers.length - 1 ? 'border-b lg:border-b-0 lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : ''} ${i === speakers.length - 1 ? 'lg:pr-0' : ''} hairline`}
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
+            <div className="relative aspect-[4/3] overflow-hidden bg-secondary grayscale transition duration-500 group-hover:grayscale-0">
               {s.image ? (
                 <Image
                   src={s.image}
                   alt={s.name}
                   width={480}
                   height={360}
-                  className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.025]"
                 />
               ) : (
                 <div className="flex h-full items-center justify-center text-3xl font-bold text-muted-foreground">
@@ -70,12 +61,13 @@ export default function SpeakersPage() {
                 </div>
               )}
             </div>
-            <div className="p-5">
-              <h3 className="text-lg font-bold">{s.name}</h3>
-              <p className="mt-0.5 text-sm font-medium text-primary">
+            <div className="pt-6">
+              <span className="font-mono text-[10px] text-primary">{String(i + 1).padStart(2, '0')}</span>
+              <h2 className="mt-2 text-3xl font-bold tracking-[-.045em]">{s.name}</h2>
+              <p className="mt-1 text-xs font-semibold uppercase tracking-[.04em] text-primary">
                 {s.role}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                 {s.bio}
               </p>
             </div>
@@ -83,21 +75,20 @@ export default function SpeakersPage() {
         ))}
       </div>
 
-      {/* CTA */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="mt-14 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6 text-center sm:p-10"
+        className="flex flex-col gap-7 border-y-2 py-10 rule sm:flex-row sm:items-end sm:justify-between"
       >
-        <h2 className="text-2xl font-bold">Interested in speaking?</h2>
-        <p className="mx-auto mt-3 max-w-md text-muted-foreground">
+        <div><p className="eyebrow">Share your perspective</p><h2 className="mt-3 text-4xl font-bold tracking-[-.05em]">Interested in speaking?</h2>
+        <p className="mt-3 max-w-md text-sm text-muted-foreground">
           We&apos;re always looking for industry professionals to share their
           insights with our members.
-        </p>
+        </p></div>
         <a
           href="mailto:soloninvestmentsociety@gmail.com"
-          className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+          className="editorial-button shrink-0"
         >
           <Mail className="h-4 w-4" />
           Contact Us

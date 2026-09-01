@@ -1,133 +1,75 @@
 "use client";
 
-import { Target, Users, BookOpen, Lightbulb } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const show = (i: number) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay: 0.1 + i * 0.08, duration: 0.45, ease: [0.25, 1, 0.5, 1] },
-});
+const principles = [
+  ["01", "Learn the language", "Understand markets, equities, ETFs, financial statements, and portfolio theory."],
+  ["02", "Research with rigor", "Turn curiosity into company research, investment theses, and thoughtful stock pitches."],
+  ["03", "Practice in public", "Build simulated portfolios, debate ideas, and learn from feedback without risking capital."],
+  ["04", "Meet the industry", "Hear directly from finance professionals, analysts, advisors, and alumni."],
+];
 
 export default function AboutPage() {
   return (
-    <div className="container py-16 sm:py-24">
-      {/* Header */}
-      <motion.div {...show(0)} className="max-w-2xl">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          About
-        </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tighter sm:text-5xl">
-          Building financial literacy,
-          <br />
-          <span className="text-primary">one meeting at a time.</span>
-        </h1>
-        <p className="mt-5 text-base text-muted-foreground leading-relaxed sm:text-lg">
-          Solon Investment Society is a student-led club at Solon High School
-          focused on building financial literacy and practical investing skills.
-          We host weekly meetings that combine foundational lessons with
-          hands-on activities.
-        </p>
-      </motion.div>
-
-      {/* Two-column cards */}
-      <div className="mt-14 grid gap-4 sm:grid-cols-2">
-        <motion.div
-          {...show(1)}
-          className="rounded-2xl border border-border bg-card p-6 sm:p-8"
-        >
-          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <BookOpen className="h-5 w-5" />
-          </div>
-          <h2 className="text-lg font-bold">What we do</h2>
-          <ul className="mt-4 space-y-3">
-            {[
-              "Intro to markets, equities, ETFs, and portfolio theory",
-              "Company research and stock pitch workshops",
-              "Portfolio simulations and challenges",
-              "Guest speakers from finance and alumni network",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm text-muted-foreground"
-              >
-                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-primary" />
-                {item}
-              </li>
-            ))}
-          </ul>
+    <div className="container">
+      <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:py-20">
+        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}>
+          <p className="eyebrow">About the society</p>
+          <h1 className="page-title mt-6">Finance should feel learnable.</h1>
         </motion.div>
+        <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">
+          Solon Investment Society is a student-led club focused on building financial literacy and practical investing skills through weekly lessons, research, and hands-on activities.
+        </motion.p>
+      </header>
 
-        <motion.div
-          {...show(2)}
-          className="rounded-2xl border border-border bg-card p-6 sm:p-8"
-        >
-          <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <Users className="h-5 w-5" />
-          </div>
-          <h2 className="text-lg font-bold">Who should join</h2>
-          <ul className="mt-4 space-y-3">
-            {[
-              "Anyone curious about investing, finance, or business",
-              "No prior experience required",
-              "We welcome beginners and experienced students alike",
-              "Open to all Solon High School students",
-            ].map((item) => (
-              <li
-                key={item}
-                className="flex items-start gap-3 text-sm text-muted-foreground"
-              >
-                <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-primary" />
-                {item}
-              </li>
+      <section className="grid border-b-2 rule lg:grid-cols-[.72fr_1.28fr]">
+        <div className="py-10 lg:border-r lg:py-16 lg:pr-12 rule">
+          <p className="eyebrow">Our mission</p>
+          <p className="mt-7 text-2xl font-semibold leading-snug tracking-[-0.035em] sm:text-4xl">
+            Give every student the knowledge and confidence to make informed financial decisions.
+          </p>
+        </div>
+        <div className="border-t py-10 hairline lg:border-t-0 lg:py-16 lg:pl-12">
+          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
+            We believe financial literacy is a critical life skill. Our members learn to communicate investment ideas clearly, evaluate evidence objectively, and build good habits through real practice—not hype.
+          </p>
+          <div className="mt-12 grid grid-cols-2 gap-px bg-[var(--hairline)] sm:grid-cols-4">
+            {[["50+", "Members"], ["Weekly", "Meetings"], ["6+", "Competitions"], ["Open", "To all students"]].map(([value, label]) => (
+              <div key={label} className="bg-background px-4 py-5">
+                <strong className="block text-2xl tracking-[-0.045em] text-primary">{value}</strong>
+                <span className="text-[10px] font-semibold uppercase">{label}</span>
+              </div>
             ))}
-          </ul>
-        </motion.div>
-      </div>
-
-      {/* Mission */}
-      <motion.div
-        {...show(3)}
-        className="mt-6 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6 sm:p-8"
-      >
-        <div className="flex items-start gap-4">
-          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-            <Target className="h-5 w-5" />
-          </div>
-          <div>
-            <h2 className="text-lg font-bold">Our Mission</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-              Empower students with the knowledge and confidence to make
-              informed financial decisions, communicate investment ideas
-              effectively, and learn by doing. We believe that financial
-              literacy is a critical life skill that every student deserves
-              access to.
-            </p>
           </div>
         </div>
-      </motion.div>
+      </section>
 
-      {/* Stats */}
-      <motion.div {...show(4)} className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-        {[
-          { value: "50+", label: "Active Members" },
-          { value: "Weekly", label: "Meetings" },
-          { value: "6+", label: "Competitions" },
-          { value: "3+", label: "Guest Speakers" },
-        ].map((stat) => (
-          <div
-            key={stat.label}
-            className="rounded-2xl border border-border bg-card p-5 text-center"
-          >
-            <div className="text-2xl font-extrabold tracking-tight text-primary">
-              {stat.value}
-            </div>
-            <div className="mt-1 text-xs font-medium text-muted-foreground">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </motion.div>
+      <section className="py-14 sm:py-20">
+        <p className="eyebrow">How we learn</p>
+        <div className="mt-6 border-t-2 rule">
+          {principles.map(([number, title, body], index) => (
+            <motion.article
+              key={number}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * .05 }}
+              className="editorial-row grid gap-3 border-b py-6 hairline sm:grid-cols-[4rem_.75fr_1.25fr] sm:items-baseline"
+            >
+              <span className="font-mono text-[11px] text-primary">{number}</span>
+              <h2 className="text-xl font-bold tracking-[-0.03em]">{title}</h2>
+              <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{body}</p>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-8 border-y-2 py-10 rule sm:grid-cols-[1fr_auto] sm:items-end">
+        <div><p className="eyebrow">Who should join</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.055em] sm:text-5xl">Curiosity is the only prerequisite.</h2><p className="mt-4 text-sm text-muted-foreground">Open to every Solon High School student. No prior finance experience required.</p></div>
+        <Link href="/schedule" className="editorial-button group">Find a meeting <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+      </section>
     </div>
   );
 }

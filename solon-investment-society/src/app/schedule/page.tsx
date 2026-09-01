@@ -1,6 +1,6 @@
 'use client';
 
-import { CalendarDays, Clock, MapPin } from 'lucide-react';
+import { CalendarDays, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const LOCATION = 'Room 227 (Mr. Gielink), Solon High School';
@@ -136,110 +136,52 @@ const meetings = [
 
 export default function SchedulePage() {
   return (
-    <div className="container py-16 sm:py-24">
-      {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-      >
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          Schedule
-        </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tighter sm:text-5xl">
-          Meeting Schedule
-        </h1>
-        <div className="mt-5 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5">
-            <CalendarDays className="h-3.5 w-3.5 text-primary" /> Mondays
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <Clock className="h-3.5 w-3.5 text-primary" /> 3:00 – 4:00 PM
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5 text-primary" /> Room 227 (Mr. Gielink)
-          </span>
-        </div>
-      </motion.div>
+    <div className="container">
+      <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1fr_.75fr] lg:items-end lg:py-20">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <p className="eyebrow">Schedule</p>
+          <h1 className="page-title mt-6">Monday is market day.</h1>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="grid grid-cols-2 border-y py-5 rule">
+          <div><span className="eyebrow">Time</span><strong className="mt-2 block text-xl">3:00–4:00 PM</strong></div>
+          <div className="border-l pl-6 hairline"><span className="eyebrow">Location</span><strong className="mt-2 block text-xl">Room 227</strong></div>
+        </motion.div>
+      </header>
 
-      {/* Timeline */}
-      <div className="relative mt-14 max-w-3xl">
-        <div className="absolute left-3 top-2 bottom-2 w-px bg-border" />
-
-        <div className="space-y-4">
+      <section className="py-12 sm:py-16">
+        <div className="flex items-end justify-between border-b-2 pb-4 rule"><div><p className="eyebrow">Program</p><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Meeting agenda</h2></div><span className="hidden font-mono text-[10px] uppercase text-muted-foreground sm:block">Fall 2025</span></div>
+        <div>
           {meetings.map((m, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: idx * 0.05, duration: 0.35 }}
-              className="relative pl-10"
+              className="editorial-row grid gap-4 border-b py-7 hairline lg:grid-cols-[9rem_1fr_1.35fr_auto] lg:items-start"
             >
-              {/* Dot */}
-              <div
-                className={`absolute left-1.5 top-5 h-3 w-3 rounded-full border-2 ${
-                  m.highlight
-                    ? 'border-primary bg-primary'
-                    : 'border-border bg-muted'
-                }`}
-              />
-
-              <div
-                className={`rounded-xl border p-5 transition-colors ${
-                  m.highlight
-                    ? 'border-primary/25 bg-primary/[0.04]'
-                    : 'border-border bg-card'
-                }`}
-              >
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-md bg-secondary px-2 py-0.5 text-[11px] font-semibold text-muted-foreground">
-                    {m.week}
-                  </span>
-                  {m.badge && (
-                    <span className="rounded-md bg-primary/15 px-2 py-0.5 text-[11px] font-semibold text-primary">
-                      {m.badge}
-                    </span>
-                  )}
-                </div>
-
-                <h2 className="mt-2 text-base font-bold sm:text-lg">{m.title}</h2>
-
+              <div><span className="font-mono text-[10px] text-primary">{String(idx + 1).padStart(2, '0')}</span><span className="ml-3 text-xs font-bold uppercase">{m.week}</span>{m.badge && <span className="mt-2 block text-[10px] font-semibold uppercase text-primary">{m.badge}</span>}</div>
+              <div>
+                <h3 className="text-xl font-bold leading-tight tracking-[-0.03em]">{m.title}</h3>
                 {(m.date || m.dates) && (
-                  <div className="mt-1 text-xs text-muted-foreground">
+                  <div className="mt-2 text-xs leading-relaxed text-muted-foreground">
                     {m.date && <span>{m.date}</span>}
-                    {m.dates &&
-                      m.dates.map((d: string, i: number) => (
-                        <span key={i} className="block">
-                          {d}
-                        </span>
-                      ))}
+                    {m.dates && m.dates.map((d: string, i: number) => <span key={i} className="block">{d}</span>)}
                   </div>
                 )}
-
-                {m.bullets && (
-                  <ul className="mt-3 space-y-1.5">
-                    {m.bullets.map((b: string, i: number) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-sm text-muted-foreground"
-                      >
-                        <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-primary/60" />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                <div className="mt-3 flex flex-wrap gap-2">
+              </div>
+              <ol className="space-y-1.5 text-sm leading-relaxed text-muted-foreground">
+                {m.bullets.map((bullet, i) => <li key={i}>{bullet}</li>)}
+              </ol>
+              <div className="flex flex-wrap gap-2 lg:justify-end">
                   {m.startUtc && m.endUtc && (
                     <a
                       href={googleCalendarUrl(m.title, m.startUtc, m.endUtc, 'Solon Investment Society meeting')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary transition-colors hover:bg-primary/20"
+                      className="inline-flex items-center gap-2 text-[11px] font-bold uppercase text-primary hover:underline"
                     >
-                      <CalendarDays className="h-3 w-3" />
-                      Add to Calendar
+                      <CalendarDays className="h-3.5 w-3.5" /> Add
                     </a>
                   )}
                   {m.startsUtc &&
@@ -255,18 +197,18 @@ export default function SchedulePage() {
                         )}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary transition-colors hover:bg-primary/20"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase text-primary hover:underline"
                       >
-                        <CalendarDays className="h-3 w-3" />
-                        Add #{i + 1}
+                        <CalendarDays className="h-3.5 w-3.5" /> Add #{i + 1}
                       </a>
                     ))}
-                </div>
               </div>
             </motion.div>
           ))}
         </div>
-      </div>
+      </section>
+
+      <section className="flex flex-col gap-5 border-y-2 py-9 rule sm:flex-row sm:items-center sm:justify-between"><div><p className="eyebrow">Questions?</p><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Come to the next meeting.</h2></div><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-link">Email the club <ArrowUpRight className="h-4 w-4" /></a></section>
     </div>
   );
 }

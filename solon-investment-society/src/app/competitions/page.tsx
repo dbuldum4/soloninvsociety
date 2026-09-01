@@ -30,47 +30,33 @@ const competitions = [
 
 export default function CompetitionsPage() {
   return (
-    <div className="container py-16 sm:py-24">
-      {/* Header */}
-      <motion.div
+    <div className="container">
+      <motion.header
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="max-w-2xl"
+        className="border-b-2 py-14 rule lg:py-20"
       >
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary">
-          Compete
-        </p>
-        <h1 className="mt-2 text-4xl font-extrabold tracking-tighter sm:text-5xl">
-          Investment Competitions
-        </h1>
-        <p className="mt-5 text-base text-muted-foreground sm:text-lg">
-          Test your investment knowledge and compete against students nationwide.
-        </p>
-      </motion.div>
+        <p className="eyebrow">Compete</p>
+        <h1 className="page-title mt-6">Put your thesis to the test.</h1>
+        <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">Research, collaborate, and compete against high school investors from Ohio and across the world.</p>
+      </motion.header>
 
-      {/* Grid */}
-      <div className="mt-14 grid gap-4 md:grid-cols-2">
+      <div className="grid md:grid-cols-2">
         {competitions.map((c, i) => (
           <motion.div
             key={c.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.06, duration: 0.4 }}
-            className="group overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-primary/25"
+            className={`group border-b-2 py-9 rule md:px-8 ${i % 2 === 0 ? 'md:border-r md:pl-0' : 'md:pr-0'} ${i < 4 ? '' : 'md:border-b-0'}`}
           >
-            {/* Header bar */}
-            <div className="border-b border-border bg-secondary/50 px-5 py-4">
-              <h2 className="text-base font-bold leading-snug sm:text-lg">
-                {c.name}
-              </h2>
-              <p className="mt-0.5 text-xs text-muted-foreground">
-                {c.organizer}
-              </p>
+            <div className="flex items-start justify-between gap-6">
+              <div><span className="font-mono text-[10px] text-primary">{String(i + 1).padStart(2, '0')}</span><p className="mt-2 text-[10px] font-bold uppercase tracking-[.08em] text-muted-foreground">{c.organizer}</p></div>
+              <Trophy className="h-5 w-5 text-primary" strokeWidth={1.4} />
             </div>
-
-            <div className="p-5">
-              {/* Meta */}
-              <div className="grid grid-cols-2 gap-3 text-xs">
+            <h2 className="mt-6 max-w-xl text-2xl font-bold leading-tight tracking-[-.04em] sm:text-3xl">{c.name}</h2>
+            <div className="mt-6 border-t pt-5 hairline">
+              <div className="grid grid-cols-2 gap-x-5 gap-y-4 text-xs">
                 {[
                   { icon: <Calendar className="h-3.5 w-3.5" />, label: 'Deadline', val: formatDeadline(c.registrationDeadline) },
                   { icon: <Target className="h-3.5 w-3.5" />, label: 'Period', val: c.competitionPeriod },
@@ -80,23 +66,22 @@ export default function CompetitionsPage() {
                   <div key={m.label} className="flex items-start gap-2">
                     <span className="mt-0.5 text-primary">{m.icon}</span>
                     <div>
-                      <span className="text-muted-foreground">{m.label}</span>
+                      <span className="text-[9px] font-bold uppercase text-muted-foreground">{m.label}</span>
                       <p className="font-semibold text-foreground">{m.val}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
                 {c.description}
               </p>
 
-              {/* Prizes */}
-              <div className="mt-3 flex flex-wrap gap-1.5">
+              <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1 border-y py-3 hairline">
                 {c.prizes.map((p) => (
                   <span
                     key={p}
-                    className="inline-flex items-center gap-1 rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary"
+                    className="inline-flex items-center gap-1 text-[10px] font-semibold uppercase text-primary"
                   >
                     <Trophy className="h-3 w-3" />
                     {p}
@@ -108,7 +93,7 @@ export default function CompetitionsPage() {
                 href={c.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+                className="editorial-link mt-6"
               >
                 Official website <ExternalLink className="h-3.5 w-3.5" />
               </a>
@@ -117,15 +102,14 @@ export default function CompetitionsPage() {
         ))}
       </div>
 
-      {/* Bottom CTA */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.45 }}
-        className="mt-14 grid gap-6 rounded-2xl border border-primary/20 bg-primary/[0.04] p-6 sm:grid-cols-2 sm:p-8"
+        className="mt-4 grid gap-10 border-y-2 py-10 rule sm:grid-cols-2 sm:py-12"
       >
         <div>
-          <h2 className="text-xl font-bold">Investopedia Simulator</h2>
+          <p className="eyebrow">Practice first</p><h2 className="mt-3 text-3xl font-bold tracking-[-.04em]">Investopedia Simulator</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Practice trading with virtual money in a realistic market
             simulation. The top performer in our club receives a $100 prize!
@@ -134,19 +118,19 @@ export default function CompetitionsPage() {
             href="https://www.investopedia.com/simulator"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+            className="editorial-link mt-5"
           >
             Try Investopedia Simulator <ExternalLink className="h-3.5 w-3.5" />
           </a>
         </div>
-        <div className="flex flex-col items-center justify-center text-center">
-          <h3 className="text-lg font-bold">Interested in competing?</h3>
+        <div className="flex flex-col items-start justify-center border-t pt-8 sm:border-l sm:border-t-0 sm:pl-10 sm:pt-0 hairline">
+          <h3 className="text-3xl font-bold tracking-[-.04em]">Interested in competing?</h3>
           <p className="mt-1 text-sm text-muted-foreground">
             Join us for support, resources, and team matching.
           </p>
           <a
             href="mailto:soloninvestmentsociety@gmail.com"
-            className="mt-4 rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="editorial-button mt-5"
           >
             Contact Us
           </a>
