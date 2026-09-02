@@ -1,5 +1,4 @@
 [build]
-  base = "solon-investment-society"
   command = "npm ci && npm run build"
   publish = ".next"
 
@@ -11,5 +10,3 @@
 
 [functions]
   directory = "netlify/functions"
-
-

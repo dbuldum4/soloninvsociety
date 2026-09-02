@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f4ef;
+  --foreground: #101110;
+  --muted: #ebeae4;
+  --muted-foreground: #5f625e;
+  --card: #f5f4ef;
+  --card-foreground: #101110;
+  --primary: #076b4c;
+  --primary-foreground: #f4fff9;
+  --secondary: #e4e3dc;
+  --secondary-foreground: #101110;
+  --border: #1a1c1a;
+  --hairline: rgba(16, 17, 16, 0.24);
+  --ring: #07855d;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-mono: "Courier New", Courier, monospace;
+}
+
+.dark {
+  --background: #101310;
+  --foreground: #f1f2ec;
+  --muted: #191d19;
+  --muted-foreground: #a4aaa2;
+  --card: #101310;
+  --card-foreground: #f1f2ec;
+  --primary: #4fd2a1;
+  --primary-foreground: #07120d;
+  --secondary: #202620;
+  --secondary-foreground: #f1f2ec;
+  --border: rgba(241, 242, 236, 0.56);
+  --hairline: rgba(241, 242, 236, 0.15);
+  --ring: #69deb2;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+* { border-color: var(--hairline); }
+
+html { background: var(--background); scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "kern" 1, "ss01" 1;
+  line-height: 1.45;
+  transition: background-color 280ms ease, color 280ms ease;
+}
+
+h1, h2, h3, .display-title, .page-title {
+  font-family: var(--font-display);
+}
+
+a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
+*:focus-visible { outline: 2px solid var(--ring); }
+::selection { background: var(--primary); color: var(--primary-foreground); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--muted-foreground); }
+
+.container { width: min(100% - 2.5rem, 86rem); margin-inline: auto; }
+
+.eyebrow {
+  color: var(--primary);
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.display-title {
+  font-size: clamp(3.5rem, 8.1vw, 7.6rem);
+  font-weight: 760;
+  letter-spacing: -0.075em;
+  line-height: 0.83;
+}
+
+.page-title {
+  max-width: 16ch;
+  font-size: clamp(3rem, 7vw, 6.7rem);
+  font-weight: 750;
+  letter-spacing: -0.065em;
+  line-height: 0.9;
+}
+
+.rule { border-color: var(--border); }
+.hairline { border-color: var(--hairline); }
+
+.editorial-button {
+  display: inline-flex;
+  min-height: 2.7rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  padding: 0.75rem 1.35rem;
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), background-color 220ms ease;
+}
+
+.editorial-button:hover { transform: translateY(-2px); }
+
+.editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--foreground);
+  font-size: 0.78rem;
+  font-weight: 720;
+  text-transform: uppercase;
+}
+
+.editorial-link::after {
+  content: "";
+  width: 1.9rem;
+  height: 1px;
+  background: currentColor;
+  transition: width 220ms ease;
+}
+
+.editorial-link:hover::after { width: 2.7rem; }
+
+.editorial-row { transition: background-color 220ms ease, color 220ms ease, padding 220ms ease; }
+.editorial-row:hover { background: var(--secondary); padding-left: 0.75rem; padding-right: 0.75rem; }
+
+@media (max-width: 640px) { .container { width: min(100% - 1.5rem, 86rem); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
