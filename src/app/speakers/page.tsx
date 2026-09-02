@@ -46,7 +46,7 @@ export default function SpeakersPage() {
             transition={{ delay: 0.1 + i * 0.1, duration: 0.45 }}
             className={`group py-10 lg:px-8 ${i < speakers.length - 1 ? 'border-b lg:border-b-0 lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : ''} ${i === speakers.length - 1 ? 'lg:pr-0' : ''} hairline`}
           >
-            <div className="relative aspect-[4/3] overflow-hidden bg-secondary grayscale transition duration-500 group-hover:grayscale-0">
+            <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
               {s.image ? (
                 <Image
                   src={s.image}

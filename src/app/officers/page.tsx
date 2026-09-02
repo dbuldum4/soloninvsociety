@@ -67,7 +67,7 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
       className="group border-b py-8 text-left hairline"
     >
       <div className="grid grid-cols-[5rem_1fr] items-center gap-5">
-        <div className="relative h-20 w-20 overflow-hidden bg-secondary grayscale transition duration-500 group-hover:grayscale-0">
+        <div className="relative h-20 w-20 overflow-hidden bg-secondary">
           {src ? (
             <Image
               src={src}
