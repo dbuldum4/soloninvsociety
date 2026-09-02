@@ -74,7 +74,10 @@ export default function StockTicker() {
           Array.isArray(parsed.data) &&
           Date.now() - parsed.timestamp < MAX_CACHE_AGE_MS
         ) {
-          setStocks(parsed.data);
+          const cachedStocks = parsed.data;
+          queueMicrotask(() => {
+            if (active) setStocks(cachedStocks);
+          });
         }
       }
     } catch {

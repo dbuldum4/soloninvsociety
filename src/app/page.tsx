@@ -35,8 +35,7 @@ export default function Home() {
     <div className="container">
       <section className="grid gap-12 py-14 md:grid-cols-[1.05fr_.95fr] md:gap-0 md:py-14 lg:py-16">
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: easing }} className="md:border-r md:pr-12 rule lg:pr-16">
-          <p className="eyebrow">Solon High School Investment Club</p>
-          <h1 className="display-title mt-8">Invest in<br /><span className="inline-block w-max origin-left scale-x-[.84] whitespace-nowrap">your future.</span></h1>
+          <h1 className="display-title">Invest in<br /><span className="inline-block w-max origin-left scale-x-[.84] whitespace-nowrap">your future.</span></h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
             Learn markets, build portfolios, compete in stock pitches, and discover the world of finance — all at Solon High School.
           </p>
@@ -129,9 +128,29 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-8 border-y-2 py-10 rule sm:flex-row sm:items-end sm:justify-between sm:py-12">
-        <div><p className="eyebrow">Next meeting</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.055em] sm:text-6xl">Make Monday count.</h2></div>
-        <Link href="/schedule" className="editorial-button group shrink-0">See the schedule <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
+      <section className="border-y-2 py-10 rule sm:py-12">
+        <h2 className="text-[clamp(3.2rem,7vw,6.8rem)] font-bold leading-[0.9] tracking-[-0.065em]">See the schedule.</h2>
+        <div className="mt-8 grid grid-cols-2 border-t rule sm:mt-10 lg:grid-cols-[.8fr_1fr_1fr_.9fr]">
+          <div className="py-5 pr-4 lg:py-6 lg:pr-8">
+            <span className="eyebrow">Next meeting</span>
+            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Monday</strong>
+          </div>
+          <div className="border-l py-5 pl-4 rule lg:px-8 lg:py-6">
+            <span className="eyebrow">Time</span>
+            <strong className="mt-3 block text-xl sm:text-2xl">3:00–4:00 PM</strong>
+          </div>
+          <div className="border-t py-5 pr-4 rule lg:border-l lg:border-t-0 lg:px-8 lg:py-6">
+            <span className="eyebrow">Location</span>
+            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Room 227</strong>
+          </div>
+          <Link
+            href="/schedule"
+            className="group flex min-h-24 items-center justify-between border-l border-t py-5 pl-4 text-xs font-bold uppercase tracking-[0.025em] text-primary rule lg:border-t-0 lg:px-8 lg:py-6"
+          >
+            View all dates
+            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.7} />
+          </Link>
+        </div>
       </section>
     </div>
   );

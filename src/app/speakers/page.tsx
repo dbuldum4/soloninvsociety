@@ -33,7 +33,7 @@ export default function SpeakersPage() {
         animate={{ opacity: 1, y: 0 }}
         className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
       >
-        <div><p className="eyebrow">Guest speakers</p><h1 className="page-title mt-6">Experience, shared.</h1></div>
+        <div><p className="eyebrow">Speakers</p><h1 className="page-title mt-6">Experience, shared.</h1></div>
         <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Industry professionals bring candid career stories and real-world financial insight into the room.</p>
       </motion.header>
 

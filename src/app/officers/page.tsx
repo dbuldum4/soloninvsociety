@@ -35,14 +35,12 @@ function candidates(o: Officer) {
 }
 
 const officers: Officer[] = [
-  { name: 'Jacob Khaykin', role: 'President of AI & Real World Applications', initials: 'JK' },
   { name: 'Avery Andrews', role: 'President of Investing', initials: 'AA' },
-  { name: 'Athulith Kanteti', role: 'President of Finance', initials: 'AK' },
-  { name: 'Sanat Mudundi', role: 'Secretary', initials: 'SM', photoExtension: 'jpeg' },
+  { name: 'Sanat Mudundi', role: 'President of Finance', initials: 'SM', photoExtension: 'jpeg' },
+  { name: 'Jonathan Parran', role: 'President of AI Applications', initials: 'JP' },
   { name: 'Deniz Buldum', role: 'Tech Lead', initials: 'DB' },
-  { name: 'Jonathan Parran', role: 'Head Consultant', initials: 'JP' },
-  { name: 'Jason Kaganovich', role: 'Head Consultant', initials: 'JK' },
-  { name: 'Ethan Belkin', role: 'Public Relations', initials: 'EB' },
+  { name: 'Akshat Sawner', role: 'Secretary', initials: 'AS' },
+  { name: 'Matthew Georgiadi', role: 'PR/Treasurer', initials: 'MG' },
 ];
 
 function Card({ officer, index }: { officer: Officer; index: number }) {
@@ -98,7 +96,7 @@ export default function OfficersPage() {
         animate={{ opacity: 1, y: 0 }}
         className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
       >
-        <div><p className="eyebrow">Leadership</p><h1 className="page-title mt-6">Students leading students.</h1></div>
+        <div><p className="eyebrow">Officers</p><h1 className="page-title mt-6">Students leading students.</h1></div>
         <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Meet the team building the program, organizing competitions, and making every meeting count.</p>
       </motion.header>
 

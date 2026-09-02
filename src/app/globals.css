@@ -15,7 +15,8 @@
   --hairline: rgba(16, 17, 16, 0.24);
   --ring: #07855d;
   --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-mono: "Courier New", Courier, monospace;
 }
 
 .dark {
@@ -29,8 +30,8 @@
   --primary-foreground: #07120d;
   --secondary: #202620;
   --secondary-foreground: #f1f2ec;
-  --border: #e5e8df;
-  --hairline: rgba(241, 242, 236, 0.23);
+  --border: rgba(241, 242, 236, 0.56);
+  --hairline: rgba(241, 242, 236, 0.15);
   --ring: #69deb2;
 }
 
@@ -62,6 +63,10 @@ body {
   font-feature-settings: "kern" 1, "ss01" 1;
   line-height: 1.45;
   transition: background-color 280ms ease, color 280ms ease;
+}
+
+h1, h2, h3, .display-title, .page-title {
+  font-family: var(--font-display);
 }
 
 a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
