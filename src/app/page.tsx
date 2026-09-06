@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const easing = [0.22, 1, 0.36, 1] as const;
 
 const features = [
-  { number: "01", title: "Weekly Meetings", body: "Hands-on sessions every Monday covering markets, investing strategies, and portfolio management." },
+  { number: "01", title: "Biweekly Meetings", body: "Hands-on sessions every other Monday covering markets, investing strategies, and portfolio management." },
   { number: "02", title: "Stock Pitches", body: "Develop research, build investment theses, and present to peers for feedback." },
   { number: "03", title: "Portfolio Challenge", body: "Simulated investing with real market data and friendly competition between members." },
   { number: "04", title: "Guest Speakers", body: "Hear from finance professionals, alumni, and accomplished advisors." },
@@ -45,15 +45,15 @@ export default function Home() {
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.13, duration: 0.65, ease: easing }} className="md:pl-12 lg:pl-16">
-          <p className="eyebrow">Weekly meeting</p>
-          <h2 className="mt-5 text-[clamp(3rem,5.5vw,5.5rem)] font-bold leading-none tracking-[-0.065em]">Every Monday</h2>
+          <p className="eyebrow">Club meetings</p>
+          <h2 className="mt-5 text-[clamp(3rem,5.5vw,5.5rem)] font-bold leading-none tracking-[-0.065em]">Every other Monday</h2>
           <div className="mt-7 grid grid-cols-2 border-y py-5 text-sm rule sm:text-base">
             <span>3:00 PM – 4:00 PM</span><span className="text-right">Room 227</span>
           </div>
-          <p className="mt-6 max-w-lg text-base leading-relaxed">Open to all Solon High School students.<br />No experience required.</p>
+          <p className="mt-6 max-w-lg text-base leading-relaxed">First meeting: Tuesday, September 8.<br />Open to all Solon High School students. No experience required.</p>
           <div className="mt-9 grid grid-cols-2 border-t hairline sm:grid-cols-4">
             {[
-              ["50+", "Active members"], ["Weekly", "Meetings"], ["6+", "Competitions"], ["3+", "Guest speakers"],
+              ["50+", "Active members"], ["Biweekly", "Meetings"], ["6+", "Competitions"], ["3+", "Guest speakers"],
             ].map(([value, label], index) => (
               <div key={label} className={`py-5 ${index % 2 ? "border-l pl-5" : ""} ${index > 1 ? "border-t sm:border-t-0" : ""} sm:border-l sm:first:border-l-0 sm:px-5 sm:first:pl-0 hairline`}>
                 <strong className="block text-2xl font-bold tracking-[-0.05em] text-primary">{value}</strong>
@@ -133,7 +133,7 @@ export default function Home() {
         <div className="mt-8 grid grid-cols-2 border-t rule sm:mt-10 lg:grid-cols-[.8fr_1fr_1fr_.9fr]">
           <div className="py-5 pr-4 lg:py-6 lg:pr-8">
             <span className="eyebrow">Next meeting</span>
-            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Monday</strong>
+            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Tuesday, Sept 8</strong>
           </div>
           <div className="border-l py-5 pl-4 rule lg:px-8 lg:py-6">
             <span className="eyebrow">Time</span>

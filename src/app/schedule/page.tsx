@@ -33,9 +33,9 @@ const meetings = [
       'Register for the Wharton High School Investment Game',
     ],
     highlight: true,
-    date: 'Mon, September 21, 2026 — 3:00–4:00 PM',
-    startUtc: '2026-09-21T19:00:00Z',
-    endUtc: '2026-09-21T20:00:00Z',
+    date: 'Tue, September 8, 2026 — 3:00–4:00 PM',
+    startUtc: '2026-09-08T19:00:00Z',
+    endUtc: '2026-09-08T20:00:00Z',
   },
   {
     week: 'Weeks 1–2',
@@ -113,7 +113,7 @@ export default function SchedulePage() {
       <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1fr_.75fr] lg:items-end lg:py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <p className="eyebrow">Schedule</p>
-          <h1 className="page-title mt-6">Monday is market day.</h1>
+          <h1 className="page-title mt-6">Tuesday kickoff. Biweekly Mondays.</h1>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="grid grid-cols-2 border-y py-5 rule">
           <div><span className="eyebrow">Time</span><strong className="mt-2 block text-xl">3:00–4:00 PM</strong></div>

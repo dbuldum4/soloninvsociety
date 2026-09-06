@@ -20,7 +20,7 @@ export default function AboutPage() {
           <h1 className="page-title mt-6">Finance should feel learnable.</h1>
         </motion.div>
         <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">
-          Solon Investment Society is a student-led club focused on building financial literacy and practical investing skills through weekly lessons, research, and hands-on activities.
+          Solon Investment Society is a student-led club focused on building financial literacy and practical investing skills through biweekly lessons, research, and hands-on activities.
         </motion.p>
       </header>
 
@@ -36,7 +36,7 @@ export default function AboutPage() {
             We believe financial literacy is a critical life skill. Our members learn to communicate investment ideas clearly, evaluate evidence objectively, and build good habits through real practice—not hype.
           </p>
           <div className="mt-12 grid grid-cols-2 gap-px bg-[var(--hairline)] sm:grid-cols-4">
-            {[["50+", "Members"], ["Weekly", "Meetings"], ["6+", "Competitions"], ["Open", "To all students"]].map(([value, label]) => (
+            {[["50+", "Members"], ["Biweekly", "Meetings"], ["6+", "Competitions"], ["Open", "To all students"]].map(([value, label]) => (
               <div key={label} className="bg-background px-4 py-5">
                 <strong className="block text-2xl tracking-[-0.045em] text-primary">{value}</strong>
                 <span className="text-[10px] font-semibold uppercase">{label}</span>
