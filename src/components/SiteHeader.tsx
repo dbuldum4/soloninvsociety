@@ -26,12 +26,12 @@ export default function SiteHeader() {
 
   return (
     <header className="relative z-50 bg-background/95 backdrop-blur-md">
-      <div className="container flex h-[74px] items-center border-b-2 rule md:h-[78px]">
+      <div className="container flex h-[74px] items-center border-b-2 rule lg:h-[78px]">
         <Link href="/" className="text-[16px] font-bold tracking-[-0.035em] sm:text-[18px]">
           Solon Investment Society
         </Link>
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex" aria-label="Primary navigation">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 lg:flex" aria-label="Primary navigation">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -46,8 +46,8 @@ export default function SiteHeader() {
           ))}
         </nav>
 
-        <div className="ml-auto hidden items-center gap-5 md:flex">
-          <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.08em] text-primary">
+        <div className="ml-auto hidden items-center gap-5 lg:flex">
+          <span className="font-mono text-[10px] font-semibold tracking-[0.08em] text-primary">
             Est. 2023
           </span>
           <ThemeToggle />
@@ -56,7 +56,7 @@ export default function SiteHeader() {
         <button
           type="button"
           onClick={() => setOpen((value) => !value)}
-          className="ml-auto grid h-10 w-10 place-items-center md:hidden"
+          className="ml-auto grid h-10 w-10 place-items-center lg:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
         >
@@ -70,12 +70,11 @@ export default function SiteHeader() {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-x-0 top-[74px] h-[calc(100dvh-74px)] bg-background md:hidden"
+            className="fixed inset-x-0 top-[74px] h-[calc(100dvh-74px)] bg-background lg:hidden"
           >
             <nav className="container flex h-full flex-col py-8" aria-label="Mobile navigation">
               {NAV.map((item, index) => (
-                <motion.div key={item.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: index * 0.045 }}>
+                <motion.div key={item.href} initial={{ opacity: 0, x: -16 }} animate={{ opacity: 1, x: 0 }}>
                   <Link
                     href={item.href}
                     onClick={() => setOpen(false)}
@@ -86,7 +85,7 @@ export default function SiteHeader() {
                 </motion.div>
               ))}
               <div className="mt-auto flex items-center justify-between border-t py-5 rule">
-                <span className="eyebrow">Theme</span>
+                <span className="detail-label">Theme</span>
                 <ThemeToggle showLabel />
               </div>
             </nav>

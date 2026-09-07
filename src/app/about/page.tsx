@@ -16,17 +16,16 @@ export default function AboutPage() {
     <div className="container">
       <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:py-20">
         <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="eyebrow">About the society</p>
-          <h1 className="page-title mt-6">Finance should feel learnable.</h1>
+          <h1 className="page-title">Finance should feel learnable.</h1>
         </motion.div>
-        <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">
+        <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">
           Solon Investment Society is a student-led club focused on building financial literacy and practical investing skills through biweekly lessons, research, and hands-on activities.
         </motion.p>
       </header>
 
       <section className="grid border-b-2 rule lg:grid-cols-[.72fr_1.28fr]">
         <div className="py-10 lg:border-r lg:py-16 lg:pr-12 rule">
-          <p className="eyebrow">Our mission</p>
+          <h2 className="section-label">Our mission</h2>
           <p className="mt-7 text-2xl font-semibold leading-snug tracking-[-0.035em] sm:text-4xl">
             Give every student the knowledge and confidence to make informed financial decisions.
           </p>
@@ -35,11 +34,11 @@ export default function AboutPage() {
           <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
             We believe financial literacy is a critical life skill. Our members learn to communicate investment ideas clearly, evaluate evidence objectively, and build good habits through real practice—not hype.
           </p>
-          <div className="mt-12 grid grid-cols-2 gap-px bg-[var(--hairline)] sm:grid-cols-4">
+          <div className="stats-grid mt-12">
             {[["50+", "Members"], ["Biweekly", "Meetings"], ["6+", "Competitions"], ["Open", "To all students"]].map(([value, label]) => (
-              <div key={label} className="bg-background px-4 py-5">
+              <div key={label} className="stat">
                 <strong className="block text-2xl tracking-[-0.045em] text-primary">{value}</strong>
-                <span className="text-[10px] font-semibold uppercase">{label}</span>
+                <span className="text-[10px] font-semibold">{label}</span>
               </div>
             ))}
           </div>
@@ -47,15 +46,14 @@ export default function AboutPage() {
       </section>
 
       <section className="py-14 sm:py-20">
-        <p className="eyebrow">How we learn</p>
+        <h2 className="section-label">How we learn</h2>
         <div className="mt-6 border-t-2 rule">
-          {principles.map(([number, title, body], index) => (
+          {principles.map(([number, title, body]) => (
             <motion.article
               key={number}
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * .05 }}
               className="editorial-row grid gap-3 border-b py-6 hairline sm:grid-cols-[4rem_.75fr_1.25fr] sm:items-baseline"
             >
               <span className="font-mono text-[11px] text-primary">{number}</span>
@@ -67,7 +65,7 @@ export default function AboutPage() {
       </section>
 
       <section className="grid gap-8 border-y-2 py-10 rule sm:grid-cols-[1fr_auto] sm:items-end">
-        <div><p className="eyebrow">Who should join</p><h2 className="mt-3 text-4xl font-bold tracking-[-0.055em] sm:text-5xl">Curiosity is the only prerequisite.</h2><p className="mt-4 text-sm text-muted-foreground">Open to every Solon High School student. No prior finance experience required.</p></div>
+        <div><h2 className="mt-3 text-4xl font-bold tracking-[-0.055em] sm:text-5xl">Curiosity is the only prerequisite.</h2><p className="mt-4 text-sm text-muted-foreground">Open to every Solon High School student. No prior finance experience required.</p></div>
         <Link href="/schedule" className="editorial-button group">Find a meeting <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></Link>
       </section>
     </div>

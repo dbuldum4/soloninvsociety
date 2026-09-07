@@ -19,7 +19,7 @@ export default function Footer() {
           </p>
         </div>
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-[0.08em]">Links</h3>
+          <h3 className="text-[10px] font-bold tracking-[0.08em]">Links</h3>
           <ul className="mt-3 grid grid-cols-2 gap-x-5 gap-y-1 lg:grid-cols-1">
             {links.map((link) => (
               <li key={link.href}><Link className="text-[11px] text-muted-foreground hover:text-primary" href={link.href}>{link.label}</Link></li>
@@ -27,14 +27,14 @@ export default function Footer() {
           </ul>
         </div>
         <div>
-          <h3 className="text-[10px] font-bold uppercase tracking-[0.08em]">Contact</h3>
+          <h3 className="text-[10px] font-bold tracking-[0.08em]">Contact</h3>
           <address className="mt-3 text-[11px] not-italic leading-relaxed text-muted-foreground">
             Solon High School<br />33600 Inwood School Dr, Solon, OH 44139<br />
             <a className="break-all hover:text-primary" href="mailto:soloninvestmentsociety@gmail.com">soloninvestmentsociety@gmail.com</a>
           </address>
         </div>
       </div>
-      <div className="flex flex-col gap-2 border-t py-4 text-[10px] uppercase tracking-[0.06em] text-muted-foreground hairline sm:flex-row sm:justify-between">
+      <div className="flex flex-col gap-2 border-t py-4 text-[10px] tracking-[0.06em] text-muted-foreground hairline sm:flex-row sm:justify-between">
         <span>© {new Date().getFullYear()} Solon Investment Society</span>
         <span>Learn · Research · Invest</span>
       </div>

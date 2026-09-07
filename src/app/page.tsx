@@ -4,8 +4,6 @@ import Link from "next/link";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
-const easing = [0.22, 1, 0.36, 1] as const;
-
 const features = [
   { number: "01", title: "Biweekly Meetings", body: "Hands-on sessions every other Monday covering markets, investing strategies, and portfolio management." },
   { number: "02", title: "Stock Pitches", body: "Develop research, build investment theses, and present to peers for feedback." },
@@ -34,7 +32,7 @@ export default function Home() {
   return (
     <div className="container">
       <section className="grid gap-12 py-14 md:grid-cols-[1.05fr_.95fr] md:gap-0 md:py-14 lg:py-16">
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.65, ease: easing }} className="md:border-r md:pr-12 rule lg:pr-16">
+        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} className="md:border-r md:pr-12 rule lg:pr-16">
           <h1 className="display-title">Invest in<br /><span className="inline-block w-max origin-left scale-x-[.84] whitespace-nowrap">your future.</span></h1>
           <p className="mt-7 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
             Learn markets, build portfolios, compete in stock pitches, and discover the world of finance — all at Solon High School.
@@ -44,29 +42,28 @@ export default function Home() {
           </Link>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.13, duration: 0.65, ease: easing }} className="md:pl-12 lg:pl-16">
-          <p className="eyebrow">Club meetings</p>
-          <h2 className="mt-5 text-[clamp(3rem,5.5vw,5.5rem)] font-bold leading-none tracking-[-0.065em]">Every other Monday</h2>
+        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} className="min-w-0 md:pl-12 lg:pl-16">
+          <h2 className="text-[clamp(3rem,5.5vw,5.5rem)] font-bold leading-none tracking-[-0.065em]">Every other Monday</h2>
           <div className="mt-7 grid grid-cols-2 border-y py-5 text-sm rule sm:text-base">
             <span>3:00 PM – 4:00 PM</span><span className="text-right">Room 227</span>
           </div>
           <p className="mt-6 max-w-lg text-base leading-relaxed">First meeting: Tuesday, September 8.<br />Open to all Solon High School students. No experience required.</p>
-          <div className="mt-9 grid grid-cols-2 border-t hairline sm:grid-cols-4">
+          <div className="stats-grid mt-9">
             {[
-              ["50+", "Active members"], ["Biweekly", "Meetings"], ["6+", "Competitions"], ["3+", "Guest speakers"],
-            ].map(([value, label], index) => (
-              <div key={label} className={`py-5 ${index % 2 ? "border-l pl-5" : ""} ${index > 1 ? "border-t sm:border-t-0" : ""} sm:border-l sm:first:border-l-0 sm:px-5 sm:first:pl-0 hairline`}>
+              ["50+", "Active members"], ["6+", "Competitions"], ["3+", "Guest speakers"],
+            ].map(([value, label]) => (
+              <div key={label} className="stat">
                 <strong className="block text-2xl font-bold tracking-[-0.05em] text-primary">{value}</strong>
-                <span className="mt-1 block text-[9px] font-semibold uppercase leading-tight">{label}</span>
+                <span className="mt-1 block text-xs leading-snug text-muted-foreground">{label}</span>
               </div>
             ))}
           </div>
         </motion.div>
       </section>
 
-      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.32, duration: 0.7 }} className="grid border-y-2 py-5 rule lg:grid-cols-[230px_1fr_190px] lg:items-center lg:gap-8">
+      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid border-y-2 py-5 rule lg:grid-cols-[230px_1fr_190px] lg:items-center lg:gap-8">
         <div>
-          <h2 className="text-xs font-bold uppercase">Market snapshot</h2>
+          <h2 className="text-xs font-bold">Market snapshot</h2>
           <p className="mt-1 text-xs text-muted-foreground">Live market overview</p>
         </div>
         <div className="mt-5 min-w-0 border-y py-2 hairline lg:mt-0 lg:border-y-0">
@@ -81,7 +78,7 @@ export default function Home() {
       </motion.section>
 
       <section className="border-b-2 py-7 rule sm:py-8">
-        <p className="eyebrow">What we do</p>
+        <h2 className="section-label">What we do</h2>
         <div className="mt-5 grid sm:grid-cols-2 lg:grid-cols-5">
           {features.map((feature, index) => (
             <motion.article
@@ -89,7 +86,6 @@ export default function Home() {
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: index * 0.06, duration: 0.45, ease: easing }}
               className={`editorial-row border-t py-5 hairline sm:px-6 lg:border-l lg:border-t-0 lg:py-0 ${index === 0 ? "sm:pr-6 lg:border-l-0 lg:pl-0" : ""}`}
             >
               <span className="text-[11px] font-bold text-primary">{feature.number}</span>
@@ -102,8 +98,7 @@ export default function Home() {
 
       <section className="grid gap-12 py-14 lg:grid-cols-[.72fr_1.28fr] lg:py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          <p className="eyebrow">Keep learning</p>
-          <h2 className="mt-4 text-5xl font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl">Build your<br />market fluency.</h2>
+          <h2 className="text-5xl font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl">Build your<br />market fluency.</h2>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">The best investors stay curious. Explore trusted sources for market news, research, and foundational finance.</p>
           <Link href="/about" className="editorial-link mt-7">About the club</Link>
         </motion.div>
@@ -117,7 +112,6 @@ export default function Home() {
               initial={{ opacity: 0, x: 14 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.06, duration: 0.4 }}
               className="editorial-row grid grid-cols-[2rem_1fr_auto] items-center gap-4 border-b py-5 hairline"
             >
               <span className="font-mono text-[10px] text-primary">0{index + 1}</span>
@@ -132,20 +126,20 @@ export default function Home() {
         <h2 className="text-[clamp(3.2rem,7vw,6.8rem)] font-bold leading-[0.9] tracking-[-0.065em]">See the schedule.</h2>
         <div className="mt-8 grid grid-cols-2 border-t rule sm:mt-10 lg:grid-cols-[.8fr_1fr_1fr_.9fr]">
           <div className="py-5 pr-4 lg:py-6 lg:pr-8">
-            <span className="eyebrow">Next meeting</span>
-            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Tuesday, Sept 8</strong>
+            <span className="detail-label">Next meeting</span>
+            <strong className="mt-3 block text-xl sm:text-2xl">Tuesday, Sept 8</strong>
           </div>
           <div className="border-l py-5 pl-4 rule lg:px-8 lg:py-6">
-            <span className="eyebrow">Time</span>
+            <span className="detail-label">Time</span>
             <strong className="mt-3 block text-xl sm:text-2xl">3:00–4:00 PM</strong>
           </div>
           <div className="border-t py-5 pr-4 rule lg:border-l lg:border-t-0 lg:px-8 lg:py-6">
-            <span className="eyebrow">Location</span>
-            <strong className="mt-3 block text-xl uppercase sm:text-2xl">Room 227</strong>
+            <span className="detail-label">Location</span>
+            <strong className="mt-3 block text-xl sm:text-2xl">Room 227</strong>
           </div>
           <Link
             href="/schedule"
-            className="group flex min-h-24 items-center justify-between border-l border-t py-5 pl-4 text-xs font-bold uppercase tracking-[0.025em] text-primary rule lg:border-t-0 lg:px-8 lg:py-6"
+            className="group flex min-h-24 items-center justify-between border-l border-t py-5 pl-4 text-xs font-bold tracking-[0.025em] text-primary rule lg:border-t-0 lg:px-8 lg:py-6"
           >
             View all dates
             <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.7} />

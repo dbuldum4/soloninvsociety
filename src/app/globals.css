@@ -62,7 +62,7 @@ body {
   color: var(--foreground);
   font-feature-settings: "kern" 1, "ss01" 1;
   line-height: 1.45;
-  transition: background-color 280ms ease, color 280ms ease;
+  transition: background-color var(--motion-duration) var(--motion-ease), color var(--motion-duration) var(--motion-ease);
 }
 
 h1, h2, h3, .display-title, .page-title {
@@ -78,13 +78,30 @@ a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
 
 .container { width: min(100% - 2.5rem, 86rem); margin-inline: auto; }
 
-.eyebrow {
-  color: var(--primary);
-  font-size: 0.72rem;
-  font-weight: 750;
-  letter-spacing: 0.14em;
-  line-height: 1.1;
-  text-transform: uppercase;
+.detail-label, .section-label {
+  color: var(--muted-foreground);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr));
+  gap: 0 0.75rem;
+}
+
+.stat {
+  min-width: 0;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--hairline);
+  overflow-wrap: anywhere;
+}
+
+.transition-colors, .transition-transform {
+  transition-duration: var(--motion-duration);
+  transition-timing-function: var(--motion-ease);
 }
 
 .display-title {
@@ -117,8 +134,7 @@ a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
   font-size: 0.78rem;
   font-weight: 750;
   letter-spacing: 0.025em;
-  text-transform: uppercase;
-  transition: transform 220ms cubic-bezier(.2,.8,.2,1), background-color 220ms ease;
+  transition: transform var(--motion-duration) var(--motion-ease), background-color var(--motion-duration) var(--motion-ease);
 }
 
 .editorial-button:hover { transform: translateY(-2px); }
@@ -130,7 +146,6 @@ a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
   color: var(--foreground);
   font-size: 0.78rem;
   font-weight: 720;
-  text-transform: uppercase;
 }
 
 .editorial-link::after {
@@ -138,12 +153,12 @@ a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
   width: 1.9rem;
   height: 1px;
   background: currentColor;
-  transition: width 220ms ease;
+  transition: width var(--motion-duration) var(--motion-ease);
 }
 
 .editorial-link:hover::after { width: 2.7rem; }
 
-.editorial-row { transition: background-color 220ms ease, color 220ms ease, padding 220ms ease; }
+.editorial-row { transition: background-color var(--motion-duration) var(--motion-ease), color var(--motion-duration) var(--motion-ease), padding var(--motion-duration) var(--motion-ease); }
 .editorial-row:hover { background: var(--secondary); padding-left: 0.75rem; padding-right: 0.75rem; }
 
 @media (max-width: 640px) { .container { width: min(100% - 1.5rem, 86rem); } }

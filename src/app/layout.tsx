@@ -1,3 +1,6 @@
+import type { CSSProperties } from "react";
+import MotionProvider from "@/components/MotionProvider";
+import { motionStyles } from "@/lib/motion";
 import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
@@ -31,12 +34,14 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
-      <body className="bg-background font-sans text-foreground antialiased">
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+      <body style={motionStyles as CSSProperties} className="bg-background font-sans text-foreground antialiased">
+        <MotionProvider>
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </MotionProvider>
       </body>
     </html>
   );

@@ -112,17 +112,16 @@ export default function SchedulePage() {
     <div className="container">
       <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1fr_.75fr] lg:items-end lg:py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <p className="eyebrow">Schedule</p>
-          <h1 className="page-title mt-6">Tuesday kickoff. Biweekly Mondays.</h1>
+          <h1 className="page-title">Tuesday kickoff. Biweekly Mondays.</h1>
         </motion.div>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .12 }} className="grid grid-cols-2 border-y py-5 rule">
-          <div><span className="eyebrow">Time</span><strong className="mt-2 block text-xl">3:00–4:00 PM</strong></div>
-          <div className="border-l pl-6 hairline"><span className="eyebrow">Location</span><strong className="mt-2 block text-xl">Room 227</strong></div>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-2 border-y py-5 rule">
+          <div><span className="detail-label">Time</span><strong className="mt-2 block text-xl">3:00–4:00 PM</strong></div>
+          <div className="border-l pl-6 hairline"><span className="detail-label">Location</span><strong className="mt-2 block text-xl">Room 227</strong></div>
         </motion.div>
       </header>
 
       <section className="py-12 sm:py-16">
-        <div className="flex items-end justify-between border-b-2 pb-4 rule"><div><p className="eyebrow">Program</p><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Meeting agenda</h2></div><span className="hidden font-mono text-[10px] uppercase text-muted-foreground sm:block">Fall 2026</span></div>
+        <div className="flex items-end justify-between border-b-2 pb-4 rule"><div><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Meeting agenda</h2></div><span className="hidden font-mono text-[10px] text-muted-foreground sm:block">Fall 2026</span></div>
         <div>
           {meetings.map((m, idx) => (
             <motion.div
@@ -130,10 +129,9 @@ export default function SchedulePage() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.05, duration: 0.35 }}
               className="editorial-row grid gap-4 border-b py-7 hairline lg:grid-cols-[9rem_1fr_1.35fr_auto] lg:items-start"
             >
-              <div><span className="font-mono text-[10px] text-primary">{String(idx + 1).padStart(2, '0')}</span><span className="ml-3 text-xs font-bold uppercase">{m.week}</span>{m.badge && <span className="mt-2 block text-[10px] font-semibold uppercase text-primary">{m.badge}</span>}</div>
+              <div><span className="font-mono text-[10px] text-primary">{String(idx + 1).padStart(2, '0')}</span><span className="ml-3 text-xs font-bold">{m.week}</span>{m.badge && <span className="mt-2 block text-[10px] font-semibold text-primary">{m.badge}</span>}</div>
               <div>
                 <h3 className="text-xl font-bold leading-tight tracking-[-0.03em]">{m.title}</h3>
                 {(m.date || m.dates) && (
@@ -152,7 +150,7 @@ export default function SchedulePage() {
                       href={googleCalendarUrl(m.title, m.startUtc, m.endUtc, 'Solon Investment Society meeting')}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-[11px] font-bold uppercase text-primary hover:underline"
+                      className="inline-flex items-center gap-2 text-[11px] font-bold text-primary hover:underline"
                     >
                       <CalendarDays className="h-3.5 w-3.5" /> Add
                     </a>
@@ -170,7 +168,7 @@ export default function SchedulePage() {
                         )}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-[11px] font-bold uppercase text-primary hover:underline"
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-primary hover:underline"
                       >
                         <CalendarDays className="h-3.5 w-3.5" /> Add #{i + 1}
                       </a>
@@ -181,7 +179,7 @@ export default function SchedulePage() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-5 border-y-2 py-9 rule sm:flex-row sm:items-center sm:justify-between"><div><p className="eyebrow">Questions?</p><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Come to the next meeting.</h2></div><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-link">Email the club <ArrowUpRight className="h-4 w-4" /></a></section>
+      <section className="flex flex-col gap-5 border-y-2 py-9 rule sm:flex-row sm:items-center sm:justify-between"><div><h2 className="mt-2 text-3xl font-bold tracking-[-0.045em]">Come to the next meeting.</h2></div><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-link">Email the club <ArrowUpRight className="h-4 w-4" /></a></section>
     </div>
   );
 }

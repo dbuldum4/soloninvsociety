@@ -63,7 +63,6 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05, duration: 0.35 }}
       className="group border-b py-8 text-left hairline"
     >
       <div className="grid grid-cols-[5rem_1fr] items-center gap-5">
@@ -74,7 +73,7 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
               alt={officer.name}
               width={96}
               height={96}
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="h-full w-full object-cover transition-transform group-hover:scale-105"
               onError={onErr}
             />
           ) : (
@@ -82,7 +81,7 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
               {officer.initials}
             </div>
           )}
-        </div><div><span className="font-mono text-[9px] text-primary">{String(index + 1).padStart(2, '0')}</span><h2 className="mt-1 text-xl font-bold tracking-[-.035em]">{officer.name}</h2><p className="mt-1 text-[10px] font-semibold uppercase leading-snug tracking-[.04em] text-primary">{officer.role}</p>{officer.bio && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{officer.bio}</p>}</div>
+        </div><div><span className="font-mono text-[9px] text-primary">{String(index + 1).padStart(2, '0')}</span><h2 className="mt-1 text-xl font-bold tracking-[-.035em]">{officer.name}</h2><p className="mt-1 text-[10px] font-semibold leading-snug tracking-[.04em] text-primary">{officer.role}</p>{officer.bio && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{officer.bio}</p>}</div>
       </div>
     </motion.div>
   );
@@ -96,7 +95,7 @@ export default function OfficersPage() {
         animate={{ opacity: 1, y: 0 }}
         className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
       >
-        <div><p className="eyebrow">Officers</p><h1 className="page-title mt-6">Students leading students.</h1></div>
+        <div><h1 className="page-title">Students leading students.</h1></div>
         <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Meet the team building the program, organizing competitions, and making every meeting count.</p>
       </motion.header>
 
@@ -105,7 +104,7 @@ export default function OfficersPage() {
           <Card key={o.name} officer={o} index={i} />
         ))}
       </div>
-      <section className="border-y-2 py-10 rule"><p className="eyebrow">Get involved</p><h2 className="mt-3 text-4xl font-bold tracking-[-.055em] sm:text-5xl">The next leader could be you.</h2><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-button mt-7">Contact the team</a></section>
+      <section className="border-y-2 py-10 rule"><h2 className="mt-3 text-4xl font-bold tracking-[-.055em] sm:text-5xl">The next leader could be you.</h2><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-button mt-7">Contact the team</a></section>
     </div>
   );
 }
