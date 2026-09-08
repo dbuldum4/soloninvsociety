@@ -54,7 +54,7 @@ export default function Home() {
             ].map(([value, label]) => (
               <div key={label} className="stat">
                 <strong className="block text-2xl font-bold tracking-[-0.05em] text-primary">{value}</strong>
-                <span className="mt-1 block text-xs leading-snug text-muted-foreground">{label}</span>
+                <span className="mt-1 block text-sm leading-snug text-muted-foreground">{label}</span>
               </div>
             ))}
           </div>
@@ -63,15 +63,15 @@ export default function Home() {
 
       <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid border-y-2 py-5 rule lg:grid-cols-[230px_1fr_190px] lg:items-center lg:gap-8">
         <div>
-          <h2 className="text-xs font-bold">Market snapshot</h2>
-          <p className="mt-1 text-xs text-muted-foreground">Live market overview</p>
+          <h2 className="text-sm font-bold">Market snapshot</h2>
+          <p className="mt-1 text-sm text-muted-foreground">Live market overview</p>
         </div>
         <div className="mt-5 min-w-0 border-y py-2 hairline lg:mt-0 lg:border-y-0">
-          <div className="flex justify-between font-mono text-[9px] text-muted-foreground"><span>9:30 AM</span><span>11:00 AM</span><span>12:30 PM</span><span>2:00 PM</span><span>4:00 PM</span></div>
+          <div className="flex justify-between font-mono text-xs text-muted-foreground"><span>9:30 AM</span><span>11:00 AM</span><span>12:30 PM</span><span>2:00 PM</span><span>4:00 PM</span></div>
           <MarketLine />
         </div>
         <div className="mt-5 lg:mt-0">
-          <span className="text-xs font-bold">S&amp;P 500</span>
+          <span className="text-sm font-bold">S&amp;P 500</span>
           <strong className="mt-1 block text-3xl font-bold tracking-[-0.04em] text-primary">5,647.31</strong>
           <span className="text-sm text-primary">+0.45% &nbsp;+25.21</span>
         </div>
@@ -88,9 +88,9 @@ export default function Home() {
               viewport={{ once: true, margin: "-40px" }}
               className={`editorial-row border-t py-5 hairline sm:px-6 lg:border-l lg:border-t-0 lg:py-0 ${index === 0 ? "sm:pr-6 lg:border-l-0 lg:pl-0" : ""}`}
             >
-              <span className="text-[11px] font-bold text-primary">{feature.number}</span>
+
               <h3 className="mt-2 text-base font-bold tracking-[-0.02em]">{feature.title}</h3>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-muted-foreground">{feature.body}</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{feature.body}</p>
             </motion.article>
           ))}
         </div>
@@ -99,11 +99,11 @@ export default function Home() {
       <section className="grid gap-12 py-14 lg:grid-cols-[.72fr_1.28fr] lg:py-20">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <h2 className="text-5xl font-bold leading-[0.95] tracking-[-0.06em] sm:text-6xl">Build your<br />market fluency.</h2>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">The best investors stay curious. Explore trusted sources for market news, research, and foundational finance.</p>
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">Market news, research, and investing fundamentals.</p>
           <Link href="/about" className="editorial-link mt-7">About the club</Link>
         </motion.div>
         <div className="border-t-2 rule">
-          {resources.map((resource, index) => (
+          {resources.map((resource) => (
             <motion.a
               key={resource.title}
               href={resource.href}
@@ -112,9 +112,9 @@ export default function Home() {
               initial={{ opacity: 0, x: 14 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="editorial-row grid grid-cols-[2rem_1fr_auto] items-center gap-4 border-b py-5 hairline"
+              className="editorial-row grid grid-cols-[1fr_auto] items-center gap-4 border-b py-5 hairline"
             >
-              <span className="font-mono text-[10px] text-primary">0{index + 1}</span>
+
               <span><strong className="block text-lg tracking-[-0.025em]">{resource.title}</strong><small className="text-muted-foreground">{resource.body}</small></span>
               <ExternalLink className="h-4 w-4" strokeWidth={1.5} />
             </motion.a>
@@ -122,30 +122,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y-2 py-10 rule sm:py-12">
-        <h2 className="text-[clamp(3.2rem,7vw,6.8rem)] font-bold leading-[0.9] tracking-[-0.065em]">See the schedule.</h2>
-        <div className="mt-8 grid grid-cols-2 border-t rule sm:mt-10 lg:grid-cols-[.8fr_1fr_1fr_.9fr]">
-          <div className="py-5 pr-4 lg:py-6 lg:pr-8">
-            <span className="detail-label">Next meeting</span>
-            <strong className="mt-3 block text-xl sm:text-2xl">Tuesday, Sept 8</strong>
-          </div>
-          <div className="border-l py-5 pl-4 rule lg:px-8 lg:py-6">
-            <span className="detail-label">Time</span>
-            <strong className="mt-3 block text-xl sm:text-2xl">3:00–4:00 PM</strong>
-          </div>
-          <div className="border-t py-5 pr-4 rule lg:border-l lg:border-t-0 lg:px-8 lg:py-6">
-            <span className="detail-label">Location</span>
-            <strong className="mt-3 block text-xl sm:text-2xl">Room 227</strong>
-          </div>
-          <Link
-            href="/schedule"
-            className="group flex min-h-24 items-center justify-between border-l border-t py-5 pl-4 text-xs font-bold tracking-[0.025em] text-primary rule lg:border-t-0 lg:px-8 lg:py-6"
-          >
-            View all dates
-            <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" strokeWidth={1.7} />
-          </Link>
-        </div>
-      </section>
     </div>
   );
 }

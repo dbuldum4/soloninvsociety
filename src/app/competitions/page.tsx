@@ -35,14 +35,7 @@ const competitions = [
 export default function CompetitionsPage() {
   return (
     <div className="container">
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="border-b-2 py-14 rule lg:py-20"
-      >
-        <h1 className="page-title">Put your skills to the test.</h1>
-        <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">Find your next challenge.</p>
-      </motion.header>
+      <header className="page-header"><h1 className="page-title">Competitions</h1></header>
 
       <div className="grid md:grid-cols-2">
         {competitions.map((c, i) => (
@@ -54,11 +47,11 @@ export default function CompetitionsPage() {
           >
             <h2 className="max-w-xl text-2xl font-bold leading-tight tracking-[-.04em] sm:text-3xl">{c.name}</h2>
             <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">{c.description}</p>
-            <p className="mt-5 text-xs text-muted-foreground">
+            <p className="mt-5 text-sm text-muted-foreground">
               {c.eligibility} <span aria-hidden="true">·</span> {c.teamSize === 'Individual' ? 'Individual entry' : `Team: ${c.teamSize}`}
             </p>
             {/^\d{4}-\d{2}-\d{2}$/.test(c.registrationDeadline) && (
-              <p className="mt-2 text-xs">Register by {formatDeadline(c.registrationDeadline)}</p>
+              <p className="mt-2 text-sm">Register by {formatDeadline(c.registrationDeadline)}</p>
             )}
             <a href={c.website} target="_blank" rel="noopener noreferrer" className="editorial-link mt-6">
               Competition details <ExternalLink className="h-3.5 w-3.5" />

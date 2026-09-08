@@ -43,7 +43,7 @@ const officers: Officer[] = [
   { name: 'Matthew Georgiadi', role: 'PR/Treasurer', initials: 'MG' },
 ];
 
-function Card({ officer, index }: { officer: Officer; index: number }) {
+function Card({ officer }: { officer: Officer }) {
   const [err, setErr] = useState(false);
   const [idx, setIdx] = useState(0);
 
@@ -81,7 +81,7 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
               {officer.initials}
             </div>
           )}
-        </div><div><span className="font-mono text-[9px] text-primary">{String(index + 1).padStart(2, '0')}</span><h2 className="mt-1 text-xl font-bold tracking-[-.035em]">{officer.name}</h2><p className="mt-1 text-[10px] font-semibold leading-snug tracking-[.04em] text-primary">{officer.role}</p>{officer.bio && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{officer.bio}</p>}</div>
+        </div><div><h2 className="mt-1 text-xl font-bold tracking-[-.035em]">{officer.name}</h2><p className="mt-1 text-sm font-medium leading-snug text-primary">{officer.role}</p>{officer.bio && <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{officer.bio}</p>}</div>
       </div>
     </motion.div>
   );
@@ -90,18 +90,11 @@ function Card({ officer, index }: { officer: Officer; index: number }) {
 export default function OfficersPage() {
   return (
     <div className="container">
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
-      >
-        <div><h1 className="page-title">Students leading students.</h1></div>
-        <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Meet the team building the program, organizing competitions, and making every meeting count.</p>
-      </motion.header>
+      <header className="page-header"><h1 className="page-title">Officers</h1></header>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10">
-        {officers.map((o, i) => (
-          <Card key={o.name} officer={o} index={i} />
+      <div className="grid sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-3">
+        {officers.map((o) => (
+          <Card key={o.name} officer={o} />
         ))}
       </div>
       <section className="border-y-2 py-10 rule"><h2 className="mt-3 text-4xl font-bold tracking-[-.055em] sm:text-5xl">The next leader could be you.</h2><a href="mailto:soloninvestmentsociety@gmail.com" className="editorial-button mt-7">Contact the team</a></section>

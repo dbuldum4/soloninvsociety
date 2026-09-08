@@ -14,38 +14,12 @@ const principles = [
 export default function AboutPage() {
   return (
     <div className="container">
-      <header className="grid gap-10 border-b-2 py-14 rule lg:grid-cols-[1.15fr_.85fr] lg:items-end lg:py-20">
-        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="page-title">Finance should feel learnable.</h1>
-        </motion.div>
-        <motion.p initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} className="max-w-xl text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">
-          Solon Investment Society is a student-led club focused on building financial literacy and practical investing skills through biweekly lessons, research, and hands-on activities.
-        </motion.p>
-      </header>
+      <header className="page-header"><h1 className="page-title">About</h1></header>
+      <p className="max-w-2xl py-8 text-lg leading-relaxed text-muted-foreground">
+        We’re a student-led investing club at Solon High School. Learn how markets work, research companies, and practice building portfolios.
+      </p>
 
-      <section className="grid border-b-2 rule lg:grid-cols-[.72fr_1.28fr]">
-        <div className="py-10 lg:border-r lg:py-16 lg:pr-12 rule">
-          <h2 className="section-label">Our mission</h2>
-          <p className="mt-7 text-2xl font-semibold leading-snug tracking-[-0.035em] sm:text-4xl">
-            Give every student the knowledge and confidence to make informed financial decisions.
-          </p>
-        </div>
-        <div className="border-t py-10 hairline lg:border-t-0 lg:py-16 lg:pl-12">
-          <p className="max-w-2xl text-base leading-relaxed text-muted-foreground">
-            We believe financial literacy is a critical life skill. Our members learn to communicate investment ideas clearly, evaluate evidence objectively, and build good habits through real practice—not hype.
-          </p>
-          <div className="stats-grid mt-12">
-            {[["50+", "Members"], ["Biweekly", "Meetings"], ["6+", "Competitions"], ["Open", "To all students"]].map(([value, label]) => (
-              <div key={label} className="stat">
-                <strong className="block text-2xl tracking-[-0.045em] text-primary">{value}</strong>
-                <span className="text-[10px] font-semibold">{label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-14 sm:py-20">
+      <section className="pb-10">
         <h2 className="section-label">How we learn</h2>
         <div className="mt-6 border-t-2 rule">
           {principles.map(([number, title, body]) => (
@@ -54,11 +28,11 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="editorial-row grid gap-3 border-b py-6 hairline sm:grid-cols-[4rem_.75fr_1.25fr] sm:items-baseline"
+              className="editorial-row grid gap-3 border-b py-6 hairline sm:grid-cols-[.75fr_1.25fr] sm:items-baseline"
             >
-              <span className="font-mono text-[11px] text-primary">{number}</span>
+
               <h2 className="text-xl font-bold tracking-[-0.03em]">{title}</h2>
-              <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">{body}</p>
+              <p className="max-w-xl text-base leading-relaxed text-muted-foreground">{body}</p>
             </motion.article>
           ))}
         </div>

@@ -24,7 +24,7 @@ export default function ThemeToggle({ showLabel = false }: { showLabel?: boolean
       onClick={toggle}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={dark}
-      className="group inline-flex h-9 items-center gap-2 px-1 text-[11px] font-semibold tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground"
+      className="group inline-flex min-h-11 min-w-11 items-center justify-center gap-2 px-2 text-sm font-semibold tracking-[0.08em] text-muted-foreground transition-colors hover:text-foreground"
     >
       <span className="relative grid h-5 w-5 place-items-center overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>

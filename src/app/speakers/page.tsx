@@ -8,19 +8,19 @@ const speakers = [
   {
     name: "Elizabeth Khaykin",
     role: "Financial Accounting Advisory Staff at EY",
-    bio: "Elizabeth Khaykin is an alumnus of The Ohio State University, where she graduated Summa Cum Laude in Accounting & Finance. She is currently a part of the Financial Accounting Advisory Staff at EY.",
+    bio: "Ohio State graduate in accounting and finance.",
     image: "/speakers/ekhaykin.jpg",
   },
   {
     name: "Tyler Dalton",
     role: "Senior Associate at Kaulig Capital",
-    bio: "Tyler Dalton is a senior associate at Kaulig Capital. Tyler has significant experience in corporate finance, private accounting, financial modeling, and process integration.",
+    bio: "Experience in corporate finance, financial modeling, and private accounting.",
     image: "/speakers/tdalton.jpg",
   },
   {
     name: "Abel Castillo",
     role: "Venture Analyst at JumpStart",
-    bio: "Abel Castillo is a venture analyst at JumpStart. Prior to joining JumpStart, he worked as part of the Business Development and Licensing Team at Cleveland Clinic Innovations. Abel holds a B.S. degree in Biology as well as a Master of Business Administration from the University of Toledo.",
+    bio: "Previously worked in business development and licensing at Cleveland Clinic Innovations.",
     image: "/speakers/acastillo.jpg",
   },
 ];
@@ -28,22 +28,15 @@ const speakers = [
 export default function SpeakersPage() {
   return (
     <div className="container">
-      <motion.header
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="grid gap-8 border-b-2 py-14 rule lg:grid-cols-[1fr_.65fr] lg:items-end lg:py-20"
-      >
-        <div><h1 className="page-title">Experience, shared.</h1></div>
-        <p className="text-lg leading-relaxed text-muted-foreground lg:border-l lg:pl-10 rule">Industry professionals bring candid career stories and real-world financial insight into the room.</p>
-      </motion.header>
+      <header className="page-header"><h1 className="page-title">Speakers</h1></header>
 
-      <div className="grid lg:grid-cols-3">
-        {speakers.map((s, i) => (
+      <div className="grid gap-x-8 lg:grid-cols-3">
+        {speakers.map((s) => (
           <motion.div
             key={s.name}
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            className={`group py-10 lg:px-8 ${i < speakers.length - 1 ? 'border-b lg:border-b-0 lg:border-r' : ''} ${i === 0 ? 'lg:pl-0' : ''} ${i === speakers.length - 1 ? 'lg:pr-0' : ''} hairline`}
+            className="group border-b py-8 hairline"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
               {s.image ? (
@@ -61,12 +54,12 @@ export default function SpeakersPage() {
               )}
             </div>
             <div className="pt-6">
-              <span className="font-mono text-[10px] text-primary">{String(i + 1).padStart(2, '0')}</span>
-              <h2 className="mt-2 text-3xl font-bold tracking-[-.045em]">{s.name}</h2>
-              <p className="mt-1 text-xs font-semibold tracking-[.04em] text-primary">
+
+              <h2 className="text-3xl font-bold tracking-[-.045em]">{s.name}</h2>
+              <p className="mt-1 text-sm font-medium text-primary">
                 {s.role}
               </p>
-              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground">
                 {s.bio}
               </p>
             </div>
@@ -80,10 +73,7 @@ export default function SpeakersPage() {
         className="flex flex-col gap-7 border-y-2 py-10 rule sm:flex-row sm:items-end sm:justify-between"
       >
         <div><h2 className="mt-3 text-4xl font-bold tracking-[-.05em]">Interested in speaking?</h2>
-        <p className="mt-3 max-w-md text-sm text-muted-foreground">
-          We&apos;re always looking for industry professionals to share their
-          insights with our members.
-        </p></div>
+</div>
         <a
           href="mailto:soloninvestmentsociety@gmail.com"
           className="editorial-button shrink-0"
