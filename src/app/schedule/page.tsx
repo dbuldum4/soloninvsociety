@@ -27,14 +27,14 @@ const googleCalendarUrl = (
 const meetings: { title: string; start: string; end: string; allDay?: boolean }[] = [
   { title: 'Club info & Wharton registration', start: '2026-09-08T19:00:00Z', end: '2026-09-08T20:00:00Z' },
   { title: 'Wharton deadline', start: '2026-09-11', end: '2026-09-12', allDay: true },
-  { title: 'Meeting — begin stock pitches/debates', start: '2026-09-21T19:00:00Z', end: '2026-09-21T20:00:00Z' },
-  { title: 'Guest speaker', start: '2026-10-05T19:00:00Z', end: '2026-10-05T20:00:00Z' },
-  { title: 'Research/club stock pitch competition', start: '2026-10-19T19:00:00Z', end: '2026-10-19T20:00:00Z' },
-  { title: 'Guest speaker', start: '2026-11-02T20:00:00Z', end: '2026-11-02T21:00:00Z' },
-  { title: 'Research/club stock pitch competition', start: '2026-11-16T20:00:00Z', end: '2026-11-16T21:00:00Z' },
-  { title: 'Real-world applications', start: '2026-11-30T20:00:00Z', end: '2026-11-30T21:00:00Z' },
-  { title: 'Real-world applications', start: '2026-12-14T20:00:00Z', end: '2026-12-14T21:00:00Z' },
-  { title: 'Advanced trading', start: '2026-12-28T20:00:00Z', end: '2026-12-28T21:00:00Z' },
+  { title: 'Meeting — begin stock pitches/debates', start: '2026-09-14T19:00:00Z', end: '2026-09-14T20:00:00Z' },
+  { title: 'Guest speaker', start: '2026-09-28T19:00:00Z', end: '2026-09-28T20:00:00Z' },
+  { title: 'Research/club stock pitch competition', start: '2026-10-12T19:00:00Z', end: '2026-10-12T20:00:00Z' },
+  { title: 'Guest speaker', start: '2026-10-26T19:00:00Z', end: '2026-10-26T20:00:00Z' },
+  { title: 'Research/club stock pitch competition', start: '2026-11-09T20:00:00Z', end: '2026-11-09T21:00:00Z' },
+  { title: 'Real-world applications', start: '2026-11-23T20:00:00Z', end: '2026-11-23T21:00:00Z' },
+  { title: 'Real-world applications', start: '2026-12-07T20:00:00Z', end: '2026-12-07T21:00:00Z' },
+  { title: 'Advanced trading', start: '2026-12-21T20:00:00Z', end: '2026-12-21T21:00:00Z' },
 ];
 
 const dateFormat = new Intl.DateTimeFormat('en-US', {
