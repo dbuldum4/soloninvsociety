@@ -175,3 +175,16 @@ a, button { -webkit-tap-highlight-color: transparent; outline-offset: 4px; }
     scroll-behavior: auto !important;
   }
 }
+
+/* Only TradingView's documented public theme tokens; branding stays untouched. */
+.market-widget {
+  color-scheme: light;
+  --tv-widget-accent-color: var(--primary);
+  --tv-widget-text-color: var(--foreground);
+  --tv-widget-background-color: var(--background);
+  --tv-widget-font-family: var(--font-sans);
+  --tv-widget-price-text-color: var(--foreground);
+  --tv-widget-positive-color: var(--primary);
+}
+
+.dark .market-widget { color-scheme: dark; }

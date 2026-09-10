@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import MarketSnapshot from "@/components/MarketSnapshot";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -18,15 +19,6 @@ const resources = [
   { title: "Bloomberg", body: "Global market analysis", href: "https://www.bloomberg.com/markets" },
   { title: "Morningstar", body: "Investment research", href: "https://www.morningstar.com/" },
 ];
-
-function MarketLine() {
-  const path = "M0 45 C25 42 31 27 55 31 C78 35 90 20 112 30 C137 41 150 18 171 26 C194 34 215 24 235 27 C257 30 270 6 292 18 C319 33 337 12 363 19 C388 25 405 16 425 22 C451 29 468 41 492 35 C515 30 531 44 553 36 C579 27 592 33 620 27";
-  return (
-    <svg viewBox="0 0 620 60" preserveAspectRatio="none" className="h-16 w-full" role="img" aria-label="S&P 500 intraday market line">
-      <path d={path} fill="none" stroke="var(--primary)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
-    </svg>
-  );
-}
 
 export default function Home() {
   return (
@@ -61,21 +53,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="grid border-y-2 py-5 rule lg:grid-cols-[230px_1fr_190px] lg:items-center lg:gap-8">
-        <div>
-          <h2 className="text-sm font-bold">Market snapshot</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Live market overview</p>
-        </div>
-        <div className="mt-5 min-w-0 border-y py-2 hairline lg:mt-0 lg:border-y-0">
-          <div className="flex justify-between font-mono text-xs text-muted-foreground"><span>9:30 AM</span><span>11:00 AM</span><span>12:30 PM</span><span>2:00 PM</span><span>4:00 PM</span></div>
-          <MarketLine />
-        </div>
-        <div className="mt-5 lg:mt-0">
-          <span className="text-sm font-bold">S&amp;P 500</span>
-          <strong className="mt-1 block text-3xl font-bold tracking-[-0.04em] text-primary">5,647.31</strong>
-          <span className="text-sm text-primary">+0.45% &nbsp;+25.21</span>
-        </div>
-      </motion.section>
+      <MarketSnapshot />
 
       <section className="border-b-2 py-7 rule sm:py-8">
         <h2 className="section-label">What we do</h2>
